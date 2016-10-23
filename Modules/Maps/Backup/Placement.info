@@ -1,0 +1,8 @@
+﻿<Placement>
+    <Place Parts_Map="Content:10"/>
+    <Place Parts_Map_Edit="Content:2"/>
+
+  <Match DisplayType="Summary">
+    <Place Parts_Map="Content:after"/>
+  </Match>
+</Placement>

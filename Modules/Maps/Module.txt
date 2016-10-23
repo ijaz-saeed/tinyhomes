@@ -1,0 +1,11 @@
+Name: Maps
+AntiForgery: enabled
+Author: The Orchard Team
+Website: http://orchardproject.net
+Version: 0.9.0
+OrchardVersion: 0.9.0
+Description: Description for the module
+Features:
+    Maps:
+        Description: Displays a Map Part or Widget based on latitude and longitude.
+        Category: Geolocation
