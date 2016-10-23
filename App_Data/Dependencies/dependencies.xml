@@ -518,22 +518,22 @@
       <Reference>
         <Name>Microsoft.Azure.KeyVault.Core</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Azure/bin/Microsoft.Azure.KeyVault.Core.dll</VirtualPath>
+        <VirtualPath>~/Modules/Orchard.Azure.MediaServices/bin/Microsoft.Azure.KeyVault.Core.dll</VirtualPath>
       </Reference>
       <Reference>
         <Name>Microsoft.Data.Edm</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Azure/bin/Microsoft.Data.Edm.dll</VirtualPath>
+        <VirtualPath>~/Modules/Orchard.Azure.MediaServices/bin/Microsoft.Data.Edm.dll</VirtualPath>
       </Reference>
       <Reference>
         <Name>Microsoft.Data.OData</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Azure/bin/Microsoft.Data.OData.dll</VirtualPath>
+        <VirtualPath>~/Modules/Orchard.Azure.MediaServices/bin/Microsoft.Data.OData.dll</VirtualPath>
       </Reference>
       <Reference>
         <Name>Microsoft.Data.Services.Client</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Azure/bin/Microsoft.Data.Services.Client.dll</VirtualPath>
+        <VirtualPath>~/Modules/Orchard.Azure.MediaServices/bin/Microsoft.Data.Services.Client.dll</VirtualPath>
       </Reference>
       <Reference>
         <Name>Microsoft.Web.DistributedCache</Name>
@@ -543,7 +543,7 @@
       <Reference>
         <Name>Microsoft.WindowsAzure.Configuration</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Azure/bin/Microsoft.WindowsAzure.Configuration.dll</VirtualPath>
+        <VirtualPath>~/Modules/Orchard.Azure.MediaServices/bin/Microsoft.WindowsAzure.Configuration.dll</VirtualPath>
       </Reference>
       <Reference>
         <Name>Microsoft.WindowsAzure.ServiceRuntime</Name>
@@ -553,7 +553,7 @@
       <Reference>
         <Name>Microsoft.WindowsAzure.Storage</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Azure/bin/Microsoft.WindowsAzure.Storage.dll</VirtualPath>
+        <VirtualPath>~/Modules/Orchard.Azure.MediaServices/bin/Microsoft.WindowsAzure.Storage.dll</VirtualPath>
       </Reference>
       <Reference>
         <Name>Microsoft.WindowsFabric.Common</Name>
@@ -573,7 +573,7 @@
       <Reference>
         <Name>System.Spatial</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Azure/bin/System.Spatial.dll</VirtualPath>
+        <VirtualPath>~/Modules/Orchard.Azure.MediaServices/bin/System.Spatial.dll</VirtualPath>
       </Reference>
     </References>
   </Dependency>
@@ -596,22 +596,22 @@
       <Reference>
         <Name>Microsoft.Azure.KeyVault.Core</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Azure/bin/Microsoft.Azure.KeyVault.Core.dll</VirtualPath>
+        <VirtualPath>~/Modules/Orchard.Azure.MediaServices/bin/Microsoft.Azure.KeyVault.Core.dll</VirtualPath>
       </Reference>
       <Reference>
         <Name>Microsoft.Data.Edm</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Azure/bin/Microsoft.Data.Edm.dll</VirtualPath>
+        <VirtualPath>~/Modules/Orchard.Azure.MediaServices/bin/Microsoft.Data.Edm.dll</VirtualPath>
       </Reference>
       <Reference>
         <Name>Microsoft.Data.OData</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Azure/bin/Microsoft.Data.OData.dll</VirtualPath>
+        <VirtualPath>~/Modules/Orchard.Azure.MediaServices/bin/Microsoft.Data.OData.dll</VirtualPath>
       </Reference>
       <Reference>
         <Name>Microsoft.Data.Services.Client</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Azure/bin/Microsoft.Data.Services.Client.dll</VirtualPath>
+        <VirtualPath>~/Modules/Orchard.Azure.MediaServices/bin/Microsoft.Data.Services.Client.dll</VirtualPath>
       </Reference>
       <Reference>
         <Name>Microsoft.Practices.TransientFaultHandling.Core</Name>
@@ -621,7 +621,7 @@
       <Reference>
         <Name>Microsoft.WindowsAzure.Configuration</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Azure/bin/Microsoft.WindowsAzure.Configuration.dll</VirtualPath>
+        <VirtualPath>~/Modules/Orchard.Azure.MediaServices/bin/Microsoft.WindowsAzure.Configuration.dll</VirtualPath>
       </Reference>
       <Reference>
         <Name>Microsoft.WindowsAzure.Diagnostics</Name>
@@ -646,7 +646,7 @@
       <Reference>
         <Name>Microsoft.WindowsAzure.Storage</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Azure/bin/Microsoft.WindowsAzure.Storage.dll</VirtualPath>
+        <VirtualPath>~/Modules/Orchard.Azure.MediaServices/bin/Microsoft.WindowsAzure.Storage.dll</VirtualPath>
       </Reference>
       <Reference>
         <Name>Orchard.MediaLibrary</Name>
@@ -671,7 +671,7 @@
       <Reference>
         <Name>System.Spatial</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Azure/bin/System.Spatial.dll</VirtualPath>
+        <VirtualPath>~/Modules/Orchard.Azure.MediaServices/bin/System.Spatial.dll</VirtualPath>
       </Reference>
     </References>
   </Dependency>

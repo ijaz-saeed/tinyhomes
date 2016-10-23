@@ -1,0 +1,12 @@
+2016-10-09 17:40:55,955 Orchard.Recipes.Services.RecipeManager - Default - INFO Executing recipe 'Test'. [ExecutionId=e479239e8ee34ff880d79efed9b4986a]
+2016-10-09 17:40:56,182 Orchard.Recipes.Services.RecipeStepQueue - Default - INFO Enqueuing recipe step 'Feature'. [ExecutionId=e479239e8ee34ff880d79efed9b4986a]
+2016-10-09 17:40:56,786 Orchard.Recipes.Services.RecipeStepQueue - Default - INFO Dequeuing recipe steps. [ExecutionId=e479239e8ee34ff880d79efed9b4986a]
+2016-10-09 17:40:56,790 Orchard.Recipes.Services.RecipeStepQueue - Default - INFO Dequeuing recipe step 'Feature'. [ExecutionId=e479239e8ee34ff880d79efed9b4986a]
+2016-10-09 17:40:56,793 Orchard.Recipes.Services.RecipeStepExecutor - Default - INFO Executing recipe step 'Feature'. [ExecutionId=e479239e8ee34ff880d79efed9b4986a]
+2016-10-09 17:40:56,806 Orchard.Recipes.Providers.RecipeHandlers.RecipeExecutionStepHandler - Default - INFO Executing recipe step 'Feature'. [ExecutionId=e479239e8ee34ff880d79efed9b4986a]
+2016-10-09 17:40:57,159 Orchard.Recipes.Services.RecipeStepExecutor - Default - ERROR Recipe execution failed because the step 'Feature' failed. [ExecutionId=e479239e8ee34ff880d79efed9b4986a]
+System.InvalidOperationException: Could not enable feature 0 because it was not found.
+   at Orchard.Modules.Recipes.Executors.FeatureStep.Execute(RecipeExecutionContext recipeContext)
+   at Orchard.Recipes.Providers.RecipeHandlers.RecipeExecutionStepHandler.ExecuteRecipeStep(RecipeContext recipeContext)
+   at Orchard.Recipes.Services.RecipeStepExecutor.ExecuteNextStep(String executionId)
+2016-10-09 17:40:57,238 Orchard.Recipes.Services.RecipeStepQueue - Default - INFO Dequeuing recipe steps. [ExecutionId=e479239e8ee34ff880d79efed9b4986a]

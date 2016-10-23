@@ -1,0 +1,417 @@
+2016-10-09 17:40:55,955 [7] Orchard.Recipes.Services.RecipeManager - Default - INFO Executing recipe 'Test'.
+2016-10-09 17:40:56,182 [7] Orchard.Recipes.Services.RecipeStepQueue - Default - INFO Enqueuing recipe step 'Feature'.
+2016-10-09 17:40:56,786 [7] Orchard.Recipes.Services.RecipeStepQueue - Default - INFO Dequeuing recipe steps.
+2016-10-09 17:40:56,790 [7] Orchard.Recipes.Services.RecipeStepQueue - Default - INFO Dequeuing recipe step 'Feature'.
+2016-10-09 17:40:56,793 [7] Orchard.Recipes.Services.RecipeStepExecutor - Default - INFO Executing recipe step 'Feature'.
+2016-10-09 17:40:56,806 [7] Orchard.Recipes.Providers.RecipeHandlers.RecipeExecutionStepHandler - Default - INFO Executing recipe step 'Feature'.
+2016-10-09 17:40:57,159 [7] Orchard.Recipes.Services.RecipeStepExecutor - Default - ERROR Recipe execution failed because the step 'Feature' failed.
+System.InvalidOperationException: Could not enable feature 0 because it was not found.
+   at Orchard.Modules.Recipes.Executors.FeatureStep.Execute(RecipeExecutionContext recipeContext)
+   at Orchard.Recipes.Providers.RecipeHandlers.RecipeExecutionStepHandler.ExecuteRecipeStep(RecipeContext recipeContext)
+   at Orchard.Recipes.Services.RecipeStepExecutor.ExecuteNextStep(String executionId)
+2016-10-09 17:40:57,238 [7] Orchard.Recipes.Services.RecipeStepQueue - Default - INFO Dequeuing recipe steps.
+2016-10-09 17:40:57,363 [7] Orchard.Exceptions.DefaultExceptionPolicy - Default - ERROR An unexpected exception was caught
+Orchard.OrchardCoreException: Recipe execution with ID e479239e8ee34ff880d79efed9b4986a failed because the step 'Feature' failed to execute. The following exception was thrown:
+Could not enable feature 0 because it was not found.
+Refer to the error logs for more information.
+   at Orchard.Recipes.Services.RecipeStepExecutor.ExecuteNextStep(String executionId)
+   at Orchard.Recipes.Services.RecipeScheduler.ExecuteWork(String executionId)
+   at Orchard.Events.DelegateHelper.<>c__DisplayClass2b`2.<BuildAction>b__2a(Object target, Object[] p)
+   at Orchard.Events.DefaultOrchardEventBus.TryInvokeMethod(IEventHandler eventHandler, Type interfaceType, String messageName, String interfaceName, String methodName, IDictionary`2 arguments, IEnumerable& returnValue)
+   at Orchard.Events.DefaultOrchardEventBus.TryInvoke(IEventHandler eventHandler, String messageName, String interfaceName, String methodName, IDictionary`2 arguments, IEnumerable& returnValue)
+   at Orchard.Events.DefaultOrchardEventBus.TryNotifyHandler(IEventHandler eventHandler, String messageName, String interfaceName, String methodName, IDictionary`2 eventData, IEnumerable& returnValue)
+2016-10-09 17:41:02,695 [11] Orchard.Environment.DefaultAssemblyLoader - Default - ERROR Error loading assembly 'System.Web.Services'
+System.IO.FileNotFoundException: Could not load file or assembly 'System.Web.Services' or one of its dependencies. The system cannot find the file specified.
+File name: 'System.Web.Services'
+   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean forIntrospection)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at Orchard.Environment.DefaultAssemblyLoader.LoadWorker(String shortName, String fullName)
+   at Orchard.Environment.DefaultAssemblyLoader.<>c__DisplayClass4.<Load>b__2(String shortName)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Orchard.Environment.DefaultAssemblyLoader.Load(String assemblyName)
+
+WRN: Assembly binding logging is turned OFF.
+To enable assembly bind failure logging, set the registry value [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) to 1.
+Note: There is some performance penalty associated with assembly bind failure logging.
+To turn this feature off, remove the registry value [HKLM\Software\Microsoft\Fusion!EnableLog].
+
+2016-10-09 17:41:02,816 [11] Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler - Default - ERROR Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+2016-10-09 17:41:02,930 [11] Orchard.Environment.DefaultAssemblyLoader - Default - ERROR Error loading assembly 'System.Web.Services'
+System.IO.FileNotFoundException: Could not load file or assembly 'System.Web.Services' or one of its dependencies. The system cannot find the file specified.
+File name: 'System.Web.Services'
+   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean forIntrospection)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at Orchard.Environment.DefaultAssemblyLoader.LoadWorker(String shortName, String fullName)
+   at Orchard.Environment.DefaultAssemblyLoader.<>c__DisplayClass4.<Load>b__2(String shortName)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Orchard.Environment.DefaultAssemblyLoader.Load(String assemblyName)
+
+WRN: Assembly binding logging is turned OFF.
+To enable assembly bind failure logging, set the registry value [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) to 1.
+Note: There is some performance penalty associated with assembly bind failure logging.
+To turn this feature off, remove the registry value [HKLM\Software\Microsoft\Fusion!EnableLog].
+
+2016-10-09 17:41:02,932 [11] Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler - Default - ERROR Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+2016-10-09 17:41:02,940 [11] Orchard.Environment.DefaultBuildManager - Default - WARN Error when compiling assembly under ~/Modules/Maps/Maps.csproj.
+System.Web.HttpParseException (0x80004005): Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   --- End of inner exception stack trace ---
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   at Orchard.Environment.Extensions.Compilers.CSharpExtensionBuildProviderShim.GenerateCode(AssemblyBuilder assemblyBuilder)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResult(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetCompiledAssembly(String virtualPath)
+   at Orchard.Environment.DefaultBuildManager.GetCompiledAssembly(String virtualPath)
+2016-10-09 17:41:03,093 [11] Orchard.Environment.DefaultAssemblyLoader - Default - ERROR Error loading assembly 'System.Web.Services'
+System.IO.FileNotFoundException: Could not load file or assembly 'System.Web.Services' or one of its dependencies. The system cannot find the file specified.
+File name: 'System.Web.Services'
+   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean forIntrospection)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at Orchard.Environment.DefaultAssemblyLoader.LoadWorker(String shortName, String fullName)
+   at Orchard.Environment.DefaultAssemblyLoader.<>c__DisplayClass4.<Load>b__2(String shortName)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Orchard.Environment.DefaultAssemblyLoader.Load(String assemblyName)
+
+WRN: Assembly binding logging is turned OFF.
+To enable assembly bind failure logging, set the registry value [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) to 1.
+Note: There is some performance penalty associated with assembly bind failure logging.
+To turn this feature off, remove the registry value [HKLM\Software\Microsoft\Fusion!EnableLog].
+
+2016-10-09 17:41:03,095 [11] Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler - Default - ERROR Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+2016-10-09 17:41:03,097 [11] Orchard.Environment.DefaultBuildManager - Default - WARN Error when compiling assembly under ~/Modules/Maps/Maps.csproj.
+System.Web.HttpParseException (0x80004005): Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   --- End of inner exception stack trace ---
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   at Orchard.Environment.Extensions.Compilers.CSharpExtensionBuildProviderShim.GenerateCode(AssemblyBuilder assemblyBuilder)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResult(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetCompiledAssembly(String virtualPath)
+   at Orchard.Environment.DefaultBuildManager.GetCompiledAssembly(String virtualPath)
+2016-10-09 17:41:03,128 [11] Orchard.Environment.DefaultAssemblyLoader - Default - ERROR Error loading assembly 'System.Web.Services'
+System.IO.FileNotFoundException: Could not load file or assembly 'System.Web.Services' or one of its dependencies. The system cannot find the file specified.
+File name: 'System.Web.Services'
+   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean forIntrospection)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at Orchard.Environment.DefaultAssemblyLoader.LoadWorker(String shortName, String fullName)
+   at Orchard.Environment.DefaultAssemblyLoader.<>c__DisplayClass4.<Load>b__2(String shortName)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Orchard.Environment.DefaultAssemblyLoader.Load(String assemblyName)
+
+WRN: Assembly binding logging is turned OFF.
+To enable assembly bind failure logging, set the registry value [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) to 1.
+Note: There is some performance penalty associated with assembly bind failure logging.
+To turn this feature off, remove the registry value [HKLM\Software\Microsoft\Fusion!EnableLog].
+
+2016-10-09 17:41:03,130 [11] Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler - Default - ERROR Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+2016-10-09 17:41:03,131 [11] Orchard.Environment.DefaultBuildManager - Default - WARN Error when compiling assembly under ~/Modules/Maps/Maps.csproj.
+System.Web.HttpParseException (0x80004005): Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   --- End of inner exception stack trace ---
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   at Orchard.Environment.Extensions.Compilers.CSharpExtensionBuildProviderShim.GenerateCode(AssemblyBuilder assemblyBuilder)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResult(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetCompiledAssembly(String virtualPath)
+   at Orchard.Environment.DefaultBuildManager.GetCompiledAssembly(String virtualPath)
+2016-10-09 17:41:03,166 [11] Orchard.Environment.DefaultAssemblyLoader - Default - ERROR Error loading assembly 'System.Web.Services'
+System.IO.FileNotFoundException: Could not load file or assembly 'System.Web.Services' or one of its dependencies. The system cannot find the file specified.
+File name: 'System.Web.Services'
+   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean forIntrospection)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at Orchard.Environment.DefaultAssemblyLoader.LoadWorker(String shortName, String fullName)
+   at Orchard.Environment.DefaultAssemblyLoader.<>c__DisplayClass4.<Load>b__2(String shortName)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Orchard.Environment.DefaultAssemblyLoader.Load(String assemblyName)
+
+WRN: Assembly binding logging is turned OFF.
+To enable assembly bind failure logging, set the registry value [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) to 1.
+Note: There is some performance penalty associated with assembly bind failure logging.
+To turn this feature off, remove the registry value [HKLM\Software\Microsoft\Fusion!EnableLog].
+
+2016-10-09 17:41:03,168 [11] Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler - Default - ERROR Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+2016-10-09 17:41:03,169 [11] Orchard.Environment.DefaultBuildManager - Default - WARN Error when compiling assembly under ~/Modules/Maps/Maps.csproj.
+System.Web.HttpParseException (0x80004005): Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   --- End of inner exception stack trace ---
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   at Orchard.Environment.Extensions.Compilers.CSharpExtensionBuildProviderShim.GenerateCode(AssemblyBuilder assemblyBuilder)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResult(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetCompiledAssembly(String virtualPath)
+   at Orchard.Environment.DefaultBuildManager.GetCompiledAssembly(String virtualPath)
+2016-10-09 17:41:03,210 [11] Orchard.Environment.DefaultAssemblyLoader - Default - ERROR Error loading assembly 'System.Web.Services'
+System.IO.FileNotFoundException: Could not load file or assembly 'System.Web.Services' or one of its dependencies. The system cannot find the file specified.
+File name: 'System.Web.Services'
+   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean forIntrospection)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at Orchard.Environment.DefaultAssemblyLoader.LoadWorker(String shortName, String fullName)
+   at Orchard.Environment.DefaultAssemblyLoader.<>c__DisplayClass4.<Load>b__2(String shortName)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Orchard.Environment.DefaultAssemblyLoader.Load(String assemblyName)
+
+WRN: Assembly binding logging is turned OFF.
+To enable assembly bind failure logging, set the registry value [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) to 1.
+Note: There is some performance penalty associated with assembly bind failure logging.
+To turn this feature off, remove the registry value [HKLM\Software\Microsoft\Fusion!EnableLog].
+
+2016-10-09 17:41:03,212 [11] Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler - Default - ERROR Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+2016-10-09 17:41:03,213 [11] Orchard.Environment.DefaultBuildManager - Default - WARN Error when compiling assembly under ~/Modules/Maps/Maps.csproj.
+System.Web.HttpParseException (0x80004005): Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   --- End of inner exception stack trace ---
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   at Orchard.Environment.Extensions.Compilers.CSharpExtensionBuildProviderShim.GenerateCode(AssemblyBuilder assemblyBuilder)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResult(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetCompiledAssembly(String virtualPath)
+   at Orchard.Environment.DefaultBuildManager.GetCompiledAssembly(String virtualPath)
+2016-10-09 17:41:03,232 [11] Orchard.Environment.DefaultAssemblyLoader - Default - ERROR Error loading assembly 'System.Web.Services'
+System.IO.FileNotFoundException: Could not load file or assembly 'System.Web.Services' or one of its dependencies. The system cannot find the file specified.
+File name: 'System.Web.Services'
+   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean forIntrospection)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at Orchard.Environment.DefaultAssemblyLoader.LoadWorker(String shortName, String fullName)
+   at Orchard.Environment.DefaultAssemblyLoader.<>c__DisplayClass4.<Load>b__2(String shortName)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Orchard.Environment.DefaultAssemblyLoader.Load(String assemblyName)
+
+WRN: Assembly binding logging is turned OFF.
+To enable assembly bind failure logging, set the registry value [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) to 1.
+Note: There is some performance penalty associated with assembly bind failure logging.
+To turn this feature off, remove the registry value [HKLM\Software\Microsoft\Fusion!EnableLog].
+
+2016-10-09 17:41:03,234 [11] Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler - Default - ERROR Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+2016-10-09 17:41:03,236 [11] Orchard.Environment.DefaultBuildManager - Default - WARN Error when compiling assembly under ~/Modules/Maps/Maps.csproj.
+System.Web.HttpParseException (0x80004005): Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   --- End of inner exception stack trace ---
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   at Orchard.Environment.Extensions.Compilers.CSharpExtensionBuildProviderShim.GenerateCode(AssemblyBuilder assemblyBuilder)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResult(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetCompiledAssembly(String virtualPath)
+   at Orchard.Environment.DefaultBuildManager.GetCompiledAssembly(String virtualPath)
+2016-10-09 17:41:03,253 [11] Orchard.Environment.DefaultAssemblyLoader - Default - ERROR Error loading assembly 'System.Web.Services'
+System.IO.FileNotFoundException: Could not load file or assembly 'System.Web.Services' or one of its dependencies. The system cannot find the file specified.
+File name: 'System.Web.Services'
+   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean forIntrospection)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at Orchard.Environment.DefaultAssemblyLoader.LoadWorker(String shortName, String fullName)
+   at Orchard.Environment.DefaultAssemblyLoader.<>c__DisplayClass4.<Load>b__2(String shortName)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Orchard.Environment.DefaultAssemblyLoader.Load(String assemblyName)
+
+WRN: Assembly binding logging is turned OFF.
+To enable assembly bind failure logging, set the registry value [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) to 1.
+Note: There is some performance penalty associated with assembly bind failure logging.
+To turn this feature off, remove the registry value [HKLM\Software\Microsoft\Fusion!EnableLog].
+
+2016-10-09 17:41:03,254 [11] Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler - Default - ERROR Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+2016-10-09 17:41:03,255 [11] Orchard.Environment.DefaultBuildManager - Default - WARN Error when compiling assembly under ~/Modules/Maps/Maps.csproj.
+System.Web.HttpParseException (0x80004005): Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   --- End of inner exception stack trace ---
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   at Orchard.Environment.Extensions.Compilers.CSharpExtensionBuildProviderShim.GenerateCode(AssemblyBuilder assemblyBuilder)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResult(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetCompiledAssembly(String virtualPath)
+   at Orchard.Environment.DefaultBuildManager.GetCompiledAssembly(String virtualPath)
+2016-10-09 17:41:03,288 [11] Orchard.Environment.DefaultAssemblyLoader - Default - ERROR Error loading assembly 'System.Web.Services'
+System.IO.FileNotFoundException: Could not load file or assembly 'System.Web.Services' or one of its dependencies. The system cannot find the file specified.
+File name: 'System.Web.Services'
+   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean forIntrospection)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at Orchard.Environment.DefaultAssemblyLoader.LoadWorker(String shortName, String fullName)
+   at Orchard.Environment.DefaultAssemblyLoader.<>c__DisplayClass4.<Load>b__2(String shortName)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Orchard.Environment.DefaultAssemblyLoader.Load(String assemblyName)
+
+WRN: Assembly binding logging is turned OFF.
+To enable assembly bind failure logging, set the registry value [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) to 1.
+Note: There is some performance penalty associated with assembly bind failure logging.
+To turn this feature off, remove the registry value [HKLM\Software\Microsoft\Fusion!EnableLog].
+
+2016-10-09 17:41:03,290 [11] Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler - Default - ERROR Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+2016-10-09 17:41:03,291 [11] Orchard.Environment.DefaultBuildManager - Default - WARN Error when compiling assembly under ~/Modules/Maps/Maps.csproj.
+System.Web.HttpParseException (0x80004005): Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   --- End of inner exception stack trace ---
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   at Orchard.Environment.Extensions.Compilers.CSharpExtensionBuildProviderShim.GenerateCode(AssemblyBuilder assemblyBuilder)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResult(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetCompiledAssembly(String virtualPath)
+   at Orchard.Environment.DefaultBuildManager.GetCompiledAssembly(String virtualPath)
+2016-10-09 17:41:03,310 [11] Orchard.Environment.DefaultAssemblyLoader - Default - ERROR Error loading assembly 'System.Web.Services'
+System.IO.FileNotFoundException: Could not load file or assembly 'System.Web.Services' or one of its dependencies. The system cannot find the file specified.
+File name: 'System.Web.Services'
+   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean forIntrospection)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at Orchard.Environment.DefaultAssemblyLoader.LoadWorker(String shortName, String fullName)
+   at Orchard.Environment.DefaultAssemblyLoader.<>c__DisplayClass4.<Load>b__2(String shortName)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Orchard.Environment.DefaultAssemblyLoader.Load(String assemblyName)
+
+WRN: Assembly binding logging is turned OFF.
+To enable assembly bind failure logging, set the registry value [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) to 1.
+Note: There is some performance penalty associated with assembly bind failure logging.
+To turn this feature off, remove the registry value [HKLM\Software\Microsoft\Fusion!EnableLog].
+
+2016-10-09 17:41:03,311 [11] Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler - Default - ERROR Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+2016-10-09 17:41:03,312 [11] Orchard.Environment.DefaultBuildManager - Default - WARN Error when compiling assembly under ~/Modules/Maps/Maps.csproj.
+System.Web.HttpParseException (0x80004005): Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   --- End of inner exception stack trace ---
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   at Orchard.Environment.Extensions.Compilers.CSharpExtensionBuildProviderShim.GenerateCode(AssemblyBuilder assemblyBuilder)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResult(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetCompiledAssembly(String virtualPath)
+   at Orchard.Environment.DefaultBuildManager.GetCompiledAssembly(String virtualPath)
+2016-10-09 17:41:03,331 [11] Orchard.Environment.DefaultAssemblyLoader - Default - ERROR Error loading assembly 'System.Web.Services'
+System.IO.FileNotFoundException: Could not load file or assembly 'System.Web.Services' or one of its dependencies. The system cannot find the file specified.
+File name: 'System.Web.Services'
+   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean forIntrospection)
+   at System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection)
+   at System.Reflection.Assembly.Load(String assemblyString)
+   at Orchard.Environment.DefaultAssemblyLoader.LoadWorker(String shortName, String fullName)
+   at Orchard.Environment.DefaultAssemblyLoader.<>c__DisplayClass4.<Load>b__2(String shortName)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Orchard.Environment.DefaultAssemblyLoader.Load(String assemblyName)
+
+WRN: Assembly binding logging is turned OFF.
+To enable assembly bind failure logging, set the registry value [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) to 1.
+Note: There is some performance penalty associated with assembly bind failure logging.
+To turn this feature off, remove the registry value [HKLM\Software\Microsoft\Fusion!EnableLog].
+
+2016-10-09 17:41:03,332 [11] Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler - Default - ERROR Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+2016-10-09 17:41:03,333 [11] Orchard.Environment.DefaultBuildManager - Default - WARN Error when compiling assembly under ~/Modules/Maps/Maps.csproj.
+System.Web.HttpParseException (0x80004005): Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Error compiling module "Maps" from file "/localorchard/Modules/Maps/Maps.csproj":
+Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded ---> Orchard.OrchardCoreException: Assembly reference 'System.Web.Services' for project '/localorchard/Modules/Maps/Maps.csproj' cannot be loaded
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   --- End of inner exception stack trace ---
+   at Orchard.Environment.Extensions.Compilers.DefaultExtensionCompiler.Compile(CompileExtensionContext context)
+   at Orchard.Environment.Extensions.Compilers.CSharpExtensionBuildProviderShim.GenerateCode(AssemblyBuilder assemblyBuilder)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+   at System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResult(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetCompiledAssembly(String virtualPath)
+   at Orchard.Environment.DefaultBuildManager.GetCompiledAssembly(String virtualPath)
+2016-10-09 17:42:19,620 [14] Orchard.Environment.Extensions.ExtensionLoaderCoordinator - Default - WARN No loader found for extension "Maps"!
+2016-10-09 17:42:20,329 [14] Orchard.Environment.Extensions.ExtensionLoaderCoordinator - Default - WARN No loader found for extension "Maps"!
+2016-10-09 17:42:21,084 [14] Orchard.Environment.Extensions.ExtensionLoaderCoordinator - Default - WARN No loader found for extension "Maps"!
+2016-10-09 17:42:21,799 [14] Orchard.Environment.Extensions.ExtensionLoaderCoordinator - Default - WARN No loader found for extension "Maps"!
+2016-10-09 17:42:22,547 [14] Orchard.Environment.Extensions.ExtensionLoaderCoordinator - Default - WARN No loader found for extension "Maps"!
+2016-10-09 17:42:23,399 [14] Orchard.Environment.Extensions.ExtensionLoaderCoordinator - Default - WARN No loader found for extension "Maps"!
