@@ -1,0 +1,10 @@
+Name: Build any form with oForms
+AntiForgery: enabled
+Author: The Extend Orchard Team
+Version: 1.9.3
+OrchardVersion: 1.7
+Description: Contact form, feedback forms, inquiry forms, any forms. Create quick and easy any forms on your website. Email the results, store them in the database or shown in the admin panel. Fits in any design on any page for any website. oForms includes also Data validation on form. Main features are: Emails processing, Data validation with jQuery, Data storage and management, Captcha security, Anti-forgery validation, Upload files, System notification messages.
+Features: Create any forms
+    oforms:
+        Description: Contact form, feedback forms, inquiry forms, any forms. Create quick and easy any forms on your website. Email the results, store them in the database or shown in the admin panel. Fits in any design on any page for any website. oForms includes also Data validation on form. Main features are: Emails processing, Data validation with jQuery, Data storage and management, Captcha security, Anti-forgery validation, Upload files, System notification messages.
+        Category: Utility

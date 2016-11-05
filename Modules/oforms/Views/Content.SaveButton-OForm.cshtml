@@ -1,0 +1,11 @@
+﻿@using Orchard.ContentManagement
+@using oforms.Models
+<fieldset class="save-button">
+    <button class="primaryAction" type="submit" name="submit.Apply" value="submit.Apply">@T("Apply")</button>
+    <button class="primaryAction" type="submit" name="submit.Save" value="submit.Save">@T("Save")</button>
+    @if (ViewBag.IsPublished == null || !ViewBag.IsPublished)
+    { 
+        <button class="primaryAction" type="submit" name="submit.Publish" value="submit.Publish">@T("Publish")</button>
+    }
+</fieldset>
+        

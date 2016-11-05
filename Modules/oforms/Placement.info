@@ -1,0 +1,8 @@
+﻿<Placement>
+  <Place Parts_OForm_Display="Content:6"/>
+  <Place Parts_OForm_Edit="Content:3"/>
+  <Place Parts_OFormSettings_Edit="Content:10"/>
+  <Match ContentType="OForm">
+    <Place Content_SaveButton="Sidebar:23;Alternate=Content_SaveButton__OForm"/>
+  </Match>
+</Placement>

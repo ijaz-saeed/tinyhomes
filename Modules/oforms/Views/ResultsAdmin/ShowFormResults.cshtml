@@ -1,0 +1,84 @@
+@model oforms.ViewModels.FormResultViewModel
+ 
+@{
+    Style.Require("AdminOform"); 
+}         
+
+<div id="oforms_mainGrid">
+<div><strong>submissions for @Model.FormName form</strong></div><br/>
+@Html.ActionLink(T("« Back to the Forms list").ToString(), "Index", "Admin")<br/><br/>
+<div class="manage">
+@Html.ActionLink(T("Export to csv").ToString(), "DownloadCsv", "ResultsAdmin", new { id = Model.FormId }, new { @class = "button primaryAction" })
+</div>
+@{ const int showMaxElements = 4;
+   bool headerDefined = false;
+   List<string> columns = new List<string>(); }
+@using (Html.BeginFormAntiForgeryPost())
+{ 
+<table class="items">
+    @foreach (var entry in Model.Results)
+    {
+        var reader = new oforms.Services.OFormResultReader(entry.Xml);
+
+        if (!headerDefined)
+        {
+            <thead>
+            <tr>
+            @{ int nodeCount = 0; }
+            @foreach (var col in reader.Columns)
+            {
+                <td>@col</td>
+                columns.Add(col.ToString());
+                nodeCount++;
+                if (nodeCount >= showMaxElements)
+                {
+                    break;
+                }
+            }
+                <th scope="col">@T("Created date")</th>
+                <th scope="col">@T("Ip")</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            headerDefined = true;
+        }
+        <tr>
+        @{ int nodeCount2 = 0;
+           string confirmTitle = "no title"; }
+        @foreach (var col in reader.Columns)
+        {
+            <td>
+                @if (columns[nodeCount2] == col)
+                { 
+                    confirmTitle = reader.GetColumnValue(col);
+                    @confirmTitle
+                }
+            </td>
+                nodeCount2++;
+                if (nodeCount2 >= columns.Count)
+                {
+                    break;
+                }
+        }
+
+        @*add missing TD*@
+        @while (nodeCount2 < columns.Count)
+        { 
+            <td></td>
+            nodeCount2++;
+        }
+
+        <td>@entry.CreatedDate</td>
+        <td>@entry.Ip</td>
+        <td>@Html.ActionLink(T("Details").ToString(), "ShowResultDetails", new { entry.Id }, new { @class = "button primaryAction" })
+        @Html.ActionLink(T("Delete").ToString(), "DeleteResult", new { entry.Id, formId = entry.OFormPartRecord.Id }, new { @class = "button primaryAction confirmLink", title = string.Format("'{0}' {1}", confirmTitle, "result") })</td>
+    </tr>
+    }
+</table>
+@Html.Hidden("CurrentPage", (int?)Model.Pager.Page)
+@Display(Model.Pager)
+}
+<br/><br/>
+@Html.ActionLink(T("« Back to the Forms list").ToString(), "Index", "Admin")
+</div>
+@Html.Partial("ConfirmScript")
