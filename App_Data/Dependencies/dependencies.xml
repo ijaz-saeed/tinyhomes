@@ -48,6 +48,12 @@
     </References>
   </Dependency>
   <Dependency>
+    <ModuleName>Maps</ModuleName>
+    <VirtualPath>~/Modules/Maps/bin/Maps.dll</VirtualPath>
+    <LoaderName>PrecompiledExtensionLoader</LoaderName>
+    <References />
+  </Dependency>
+  <Dependency>
     <ModuleName>Orchard.Tokens</ModuleName>
     <VirtualPath>~/Modules/Orchard.Tokens/bin/Orchard.Tokens.dll</VirtualPath>
     <LoaderName>PrecompiledExtensionLoader</LoaderName>
@@ -113,6 +119,12 @@
     <ModuleName>Navigation</ModuleName>
     <VirtualPath>~/Core/Navigation</VirtualPath>
     <LoaderName>CoreExtensionLoader</LoaderName>
+    <References />
+  </Dependency>
+  <Dependency>
+    <ModuleName>oforms</ModuleName>
+    <VirtualPath>~/Modules/oforms/bin/oforms.dll</VirtualPath>
+    <LoaderName>PrecompiledExtensionLoader</LoaderName>
     <References />
   </Dependency>
   <Dependency>
@@ -1991,6 +2003,12 @@
     <ModuleName>TheAdmin</ModuleName>
     <VirtualPath>~/Themes/TheAdmin</VirtualPath>
     <LoaderName>RawThemeExtensionLoader</LoaderName>
+    <References />
+  </Dependency>
+  <Dependency>
+    <ModuleName>TheBootstrapMachine</ModuleName>
+    <VirtualPath>~/Themes/TheBootstrapMachine/bin/TheBootstrapMachine.dll</VirtualPath>
+    <LoaderName>PrecompiledExtensionLoader</LoaderName>
     <References />
   </Dependency>
   <Dependency>
