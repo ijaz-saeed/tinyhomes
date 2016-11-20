@@ -1,0 +1,8 @@
+Name: MyBootstrapMachine
+Author: The Orchard Team
+Website: http://www.orchardproject.net
+Description: Description for the theme
+Version: 1.0
+BaseTheme: TheBootstrapMachine
+# todo: provide tags
+# Tags: Classic, Serif

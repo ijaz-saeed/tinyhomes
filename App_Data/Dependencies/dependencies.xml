@@ -116,6 +116,12 @@
     </References>
   </Dependency>
   <Dependency>
+    <ModuleName>MyBootstrapMachine</ModuleName>
+    <VirtualPath>~/Themes/MyBootstrapMachine/bin/MyBootstrapMachine.dll</VirtualPath>
+    <LoaderName>PrecompiledExtensionLoader</LoaderName>
+    <References />
+  </Dependency>
+  <Dependency>
     <ModuleName>Navigation</ModuleName>
     <VirtualPath>~/Core/Navigation</VirtualPath>
     <LoaderName>CoreExtensionLoader</LoaderName>

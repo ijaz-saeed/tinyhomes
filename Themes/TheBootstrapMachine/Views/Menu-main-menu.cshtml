@@ -30,7 +30,7 @@
                 @tag.EndElement
                 
                 @using (Capture(Layout.NavBar, "5")) {
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right hidden">
                     @if (WorkContext.CurrentUser != null) {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Html.ItemDisplayText(WorkContext.CurrentUser) <b class="caret"></b></a>
