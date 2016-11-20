@@ -807,7 +807,7 @@
       <Reference>
         <Name>YamlDotNet.Dynamic</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Blogs/bin/YamlDotNet.Dynamic.dll</VirtualPath>
+        <VirtualPath>~/Modules/Vandelay.Industries/bin/YamlDotNet.Dynamic.dll</VirtualPath>
       </Reference>
     </References>
   </Dependency>
@@ -889,7 +889,7 @@
       <Reference>
         <Name>YamlDotNet.Dynamic</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Blogs/bin/YamlDotNet.Dynamic.dll</VirtualPath>
+        <VirtualPath>~/Modules/Vandelay.Industries/bin/YamlDotNet.Dynamic.dll</VirtualPath>
       </Reference>
     </References>
   </Dependency>
@@ -971,7 +971,7 @@
       <Reference>
         <Name>YamlDotNet.Dynamic</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Blogs/bin/YamlDotNet.Dynamic.dll</VirtualPath>
+        <VirtualPath>~/Modules/Vandelay.Industries/bin/YamlDotNet.Dynamic.dll</VirtualPath>
       </Reference>
     </References>
   </Dependency>
@@ -1136,7 +1136,7 @@
       <Reference>
         <Name>YamlDotNet.Dynamic</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Blogs/bin/YamlDotNet.Dynamic.dll</VirtualPath>
+        <VirtualPath>~/Modules/Vandelay.Industries/bin/YamlDotNet.Dynamic.dll</VirtualPath>
       </Reference>
     </References>
   </Dependency>
@@ -1213,7 +1213,7 @@
       <Reference>
         <Name>YamlDotNet.Dynamic</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Blogs/bin/YamlDotNet.Dynamic.dll</VirtualPath>
+        <VirtualPath>~/Modules/Vandelay.Industries/bin/YamlDotNet.Dynamic.dll</VirtualPath>
       </Reference>
     </References>
   </Dependency>
@@ -1421,7 +1421,7 @@
       <Reference>
         <Name>YamlDotNet.Dynamic</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Blogs/bin/YamlDotNet.Dynamic.dll</VirtualPath>
+        <VirtualPath>~/Modules/Vandelay.Industries/bin/YamlDotNet.Dynamic.dll</VirtualPath>
       </Reference>
     </References>
   </Dependency>
@@ -1837,7 +1837,7 @@
       <Reference>
         <Name>YamlDotNet.Dynamic</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Blogs/bin/YamlDotNet.Dynamic.dll</VirtualPath>
+        <VirtualPath>~/Modules/Vandelay.Industries/bin/YamlDotNet.Dynamic.dll</VirtualPath>
       </Reference>
     </References>
   </Dependency>
@@ -1920,7 +1920,7 @@
       <Reference>
         <Name>YamlDotNet.Dynamic</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Blogs/bin/YamlDotNet.Dynamic.dll</VirtualPath>
+        <VirtualPath>~/Modules/Vandelay.Industries/bin/YamlDotNet.Dynamic.dll</VirtualPath>
       </Reference>
     </References>
   </Dependency>
@@ -2123,7 +2123,119 @@
       <Reference>
         <Name>YamlDotNet.Dynamic</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
-        <VirtualPath>~/Modules/Orchard.Blogs/bin/YamlDotNet.Dynamic.dll</VirtualPath>
+        <VirtualPath>~/Modules/Vandelay.Industries/bin/YamlDotNet.Dynamic.dll</VirtualPath>
+      </Reference>
+    </References>
+  </Dependency>
+  <Dependency>
+    <ModuleName>Vandelay.Industries</ModuleName>
+    <VirtualPath>~/Modules/Vandelay.Industries/bin/Vandelay.Industries.dll</VirtualPath>
+    <LoaderName>PrecompiledExtensionLoader</LoaderName>
+    <References>
+      <Reference>
+        <Name>Fluent.IO</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Vandelay.Industries/bin/Fluent.IO.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Fluent.Zip</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Vandelay.Industries/bin/Fluent.Zip.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>HtmlAgilityPack</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Azure.MediaServices/bin/HtmlAgilityPack.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Ionic.Zip</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Media/bin/Ionic.Zip.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>MarkdownSharp</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Markdown/bin/MarkdownSharp.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.Alias</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Alias/bin/Orchard.Alias.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.Autoroute</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Autoroute/bin/Orchard.Autoroute.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.Conditions</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Conditions/bin/Orchard.Conditions.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.ContentTypes</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.ContentTypes/bin/Orchard.ContentTypes.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.Forms</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Forms/bin/Orchard.Forms.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.Layouts</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Layouts/bin/Orchard.Layouts.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.MediaLibrary</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.MediaLibrary/bin/Orchard.MediaLibrary.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.Modules</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Modules/bin/Orchard.Modules.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.Packaging</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Packaging/bin/Orchard.Packaging.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.Projections</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Projections/bin/Orchard.Projections.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.Scripting</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Scripting/bin/Orchard.Scripting.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.Tags</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Tags/bin/Orchard.Tags.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.Themes</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Themes/bin/Orchard.Themes.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.Tokens</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Tokens/bin/Orchard.Tokens.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.Widgets</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Widgets/bin/Orchard.Widgets.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>YamlDotNet.Dynamic</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Vandelay.Industries/bin/YamlDotNet.Dynamic.dll</VirtualPath>
       </Reference>
     </References>
   </Dependency>
