@@ -1,0 +1,92 @@
+﻿@model FileManager.ViewModels.FileViewViewModel
+@using FileManager.Models;
+@using FileManager.Helpers;
+@using FileManager.ViewModels;
+@using System.IO;
+@{ 
+    Script.Require("jQuery").AtHead();
+    Script.Include("jquery.lightbox.js").AtHead();
+    Script.Include("fileHelpers.js").AtHead();
+    Style.Include("jquery.lightbox.css").AtHead();
+    Style.Include("FileDownload.css");
+    Script.Include("flowplayer.js").AtHead();
+    Script.Include("silverlight.js").AtHead();
+    Script.Include("wmvplayer.js").AtHead();
+}
+
+
+@if (Model.File != null && FilesGroupsHelpers.FileExist(Model.FilePath))
+{
+    FileShowTags tags = FilesGroupsHelpers.GetFileElements(Model.FilePath, Model.File, Model.FileType);
+    if (Model.type == FileManager.ViewModels.DisplayType.edit)
+    {
+    <div style="margin-bottom: 15px;">
+        <label for="embedPath">@T("Embed:")</label>
+        <input id="embedPath" class="textMedium" onclick="SelectAll(this)" name="embedPath" type="text" readonly="readonly" value="@T(tags.EmbedPath)" />
+        <span class="hint">@T("Copy this html to add this file to your site.")</span>
+    </div>
+    }
+    if ((!string.IsNullOrEmpty(tags.ShowHtml) && Model.type == DisplayType.elements) || Model.type == DisplayType.edit)
+    {
+        <div class="file-element-div">
+        @if (Model.FileType == FileManagerSettingsTypes.pictures)
+        { 
+        <script type="text/javascript">
+        $(function () {
+            $('.img-gallery-lightbox a').lightBox({
+                imageLoading: '@Url.Content("~/Modules/FileManager/Styles/Images/lightbox-ico-loading.gif")',
+                imageBtnPrev: '@Url.Content("~/Modules/FileManager/Styles/Images/lightbox-btn-prev.gif")',
+                imageBtnNext: '@Url.Content("~/Modules/FileManager/Styles/Images/lightbox-btn-next.gif")',
+                imageBtnClose: '@Url.Content("~/Modules/FileManager/Styles/Images/lightbox-btn-close.gif")',
+                imageBlank: '@Url.Content("~/Modules/FileManager/Styles/Images/lightbox-blank.gif")' 		
+            });
+        });
+        </script>
+        }
+        @if (Model.SearchParams != null && !string.IsNullOrEmpty(Model.SearchParams.UrlToGroup)) 
+        { 
+            <div class="file-body-search-files" style="padding-left:12px; font-size:11pt; margin-bottom:6px;">
+                @T("Path: ")<a href="@Model.SearchParams.UrlToGroup" >@Model.SearchParams.GroupName</a>
+            </div>
+        }
+        @T(tags.ShowHtml)
+        </div>
+    }
+    if (string.IsNullOrEmpty(tags.ShowHtml) || Model.type != DisplayType.elements)
+    {
+        string imagePath = FilesGroupsHelpers.GetExtensionImagePath(Model.File);
+        
+    <div class="file-body-div">
+        <div class="file-body-body-up">
+            @Html.Image(Url.Content(imagePath), Model.File.Name, new { })
+            <div class="file-body-info">
+                <div class="file-body-info-title">
+                    <a href="@Model.FilePath">@Model.File.Name</a>
+                </div>
+                <div>
+                    <label>@T("Size: <span>{0}</span>", Model.File.Size.ToFriendlySizeString())</label>
+                </div>
+            </div>
+            <div class="file-body-download">
+            <a href="@Model.FilePath">
+                <img src="@Url.Content("~/Modules/FileManager/Styles/Images/download-button.png")" alt="Download @Model.File.Name" title="Download @Model.File.Name" />
+                </a>
+            </div>
+        </div>
+        <div class="file-body-description">
+            @Model.File.Description
+        </div>
+
+        @if (Model.SearchParams != null && !string.IsNullOrEmpty(Model.SearchParams.UrlToGroup)) 
+        { 
+            <div class="file-body-search-files" style="padding-left:12px; font-size:11pt;">
+                <a href="@Model.SearchParams.UrlToGroup" >@Model.SearchParams.GroupName</a>
+            </div>
+        }
+
+    </div>
+    }
+    
+
+
+}

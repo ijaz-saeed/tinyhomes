@@ -1,0 +1,10 @@
+Name: FileManager
+AntiForgery: enabled
+Author: Ondrej Mechacek
+Website: http://www.mechacek.com
+Version: 1.1.2
+OrchardVersion: 1.4
+Dependencies: Orchard.Media, Orchard.jQuery, Orchard.Users, Orchard.Roles
+Description: The file manager module offer basic media management features. 
+FeatureDescription: File system based media upload, storage and management.
+Category: Media

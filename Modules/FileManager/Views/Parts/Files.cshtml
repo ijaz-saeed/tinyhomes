@@ -1,0 +1,166 @@
+﻿@using FileManager.Helpers;
+@using FileManager.ViewModels;
+@using FileManager.Models;
+@using System.Collections.Generic;
+
+@{ 
+    Style.Include("FileDisplay.css");
+    Script.Require("jQuery").AtHead();
+}
+
+
+@if (Model.AccessDenied != null && Model.AccessDenied == true)
+{
+    <div style="font-size:15pt;">
+    <img alt="Access denied" style="width:70px; vertical-align:middle; margin-right:25px;" src="@Url.Content("~/Modules/FileManager/Styles/Images/accessdenied.gif")" />
+    @T("You do not have permission to view this content.")</div>
+}
+else
+{ 
+
+<div style="min-height:400px;">
+@if (Model.GroupRoot != null)
+{
+    var path = FilesGroupsHelpers.GetDisplayGroupPath(Model.GroupRoot.Id);
+    <div style="margin-bottom:16px; margin-top:8px;">
+        <a class="orchard-files-root" href='@path' >@Model.GroupRoot.Name</a>
+    </div>
+}
+@if (Model.SelectedGroup != null && !string.IsNullOrEmpty(Model.SelectedGroup.Description))
+{
+    <div style="margin: 3px 10px 10px 10px;">@Model.SelectedGroup.Description</div>
+}
+
+@if (Model.Groups != null && Model.Groups.Count > 0 && (Model.HideGroups == null || Model.HideGroups == false))
+{
+    List<int> SelectedPath = Model.SelectedPath;
+<div>
+@foreach (List<GroupRecord> groups in Model.Groups)
+{
+    if (groups != null && groups.Count > 0)
+    { 
+        <fieldset class="orchard-files-groups-fieldset">
+
+        <legend>@groups.FirstOrDefault().Parent.Name</legend>
+        <div>
+        @foreach (var item in groups)
+        {
+            var path = FilesGroupsHelpers.GetDisplayGroupPath(item.Id);
+            var cssClass = SelectedPath.Contains(item.Id) ? "orchard-files-group-current" : "";
+             <a class="orchard-files-group @cssClass" href="@path" >@item.Name</a>
+        }
+        </div>
+        </fieldset>
+    }
+}
+</div>
+}
+
+@if (Model.HideFilterPanel == null || Model.HideFilterPanel == false)
+{
+    SelectedOrder selectedOrder = Model.SelectedOrder;
+     <div class="orchard-files-filterpanel">
+        
+        <label for="serarchText" style="display:inline;">@T("Search:")</label>
+        <div class="orchard-files-filter-searchbar">
+        <input id="serarchText" style="display:inline-block;" type="text" value="@Model.SearchText" title="@T("Search file by name")" onchange="SetVisibleClearSearch()" />
+        <div style="display:inline-block; width:17px;margin-right:4px;">
+        <img id="clearSearch" style="display:none;" alt="clear search" class="orchard-files-filter-img-button orchard-files-filter-clear-search" src="@Url.Content("~/Modules/FileManager/Styles/Images/cross.png")" onclick="ClearSearch();" />
+        </div>
+        </div>
+        <img alt="search" class="orchard-files-filter-img-button" src="@Url.Content("~/Modules/FileManager/Styles/Images/magnifier.gif")" onclick="SendSearchText();" />
+        <label for="filterResults" style="display:inline; margin-left:10px;">@T("Sort by:")</label>
+        <select id="filterResults" onchange="ChangeSortingType(this);">
+            @Html.SelectOption(FileGroupsAdminIndexOrderBy.Name, (bool)Model.SelectedOrder.Name, T("Name").ToString())           
+            @Html.SelectOption(FileGroupsAdminIndexOrderBy.CreateDate, (bool)Model.SelectedOrder.CreateDate, T("Create Date").ToString())           
+            @Html.SelectOption(FileGroupsAdminIndexOrderBy.UpdateDate, (bool)Model.SelectedOrder.UpdateDate, T("Update Date").ToString())           
+            @Html.SelectOption(FileGroupsAdminIndexOrderBy.Size, (bool)Model.SelectedOrder.Size, T("Size").ToString())           
+        </select>
+        <a id="orderByAsc" href="@FilesGroupsHelpers.GetDisplaySortingUrl(true)" title="@T("Sort asc")"><img alt="sort asc" style="vertical-align:middle" class="orchard-files-filter-sort-button" src="@Url.Content("~/Modules/FileManager/Styles/Images/sort-asc.png")" /></a>
+        <a id="orderByDesc" href="@FilesGroupsHelpers.GetDisplaySortingUrl(false)" title="@T("Sort desc")"><img alt="sort asc" class="orchard-files-filter-sort-button" src="@Url.Content("~/Modules/FileManager/Styles/Images/sort-desc.png")" /></a>     
+     </div>
+    
+    <script type="text/javascript">
+        var adress = '@FilesGroupsHelpers.GetDisplaySortingTypeUrl(FilesGroupsHelpers.DisplaySortTypeUrlParam, "-------")';
+        var serarchAdress = '@FilesGroupsHelpers.GetDisplaySortingTypeUrl(FilesGroupsHelpers.DisplaySearchTextUrlParam, "-------")';
+        var clearSarchAdress = '@FilesGroupsHelpers.UrlRemoveParamFromCurrUrl(FilesGroupsHelpers.DisplaySearchTextUrlParam)'
+
+
+        adress = adress.replace(/amp;/gi, "");
+        clearSarchAdress = clearSarchAdress.replace(/amp;/gi, "");
+        serarchAdress = serarchAdress.replace(/amp;/gi, "");
+
+        function ChangeSortingType(obj) {
+            adress = adress.replace("-------", $(obj).val());
+            window.location = adress;
+        }
+
+        function ClearSearch() {
+            window.location = clearSarchAdress;
+        }
+
+        function SendSearchText() {
+            window.location = clearSarchAdress;
+            if ($("#serarchText").val() == "") {
+                ClearSearch();
+            }
+            else {
+                serarchAdress = serarchAdress.replace("-------", escape($("#serarchText").val()));
+                window.location = serarchAdress;
+            }
+        }
+
+        function SetVisibleClearSearch() {
+            if ($("#serarchText").val() != "") {
+                $("#clearSearch").show();
+            }
+            else {
+                $("#clearSearch").hide();
+            }
+        }
+
+        $(document).ready(function () {
+
+            SetVisibleClearSearch();
+
+            $("#serarchText").keyup(function (event) {
+                SetVisibleClearSearch();
+                if (event.keyCode == 13) {
+                    SendSearchText();
+                }
+            });
+
+        });
+
+    </script>
+}    
+
+    
+@if (Model.Files != null)
+{
+    int? showType = Model.ShowType;
+    DisplayType type = DisplayType.inline;
+    if (showType.HasValue)
+    {
+        type = (DisplayType)showType;
+    }
+<div style="padding:0 5px 0 5px;" >
+@foreach (FileDisplayEntry file in Model.Files)
+{
+    SearchFileDisplayParams search = null;
+    if (file.SearchParams != null && !string.IsNullOrEmpty(file.SearchParams.PathToCurentRoot))
+    {
+        search = new SearchFileDisplayParams();
+        search.GroupName = file.SearchParams.PathToCurentRoot;
+        search.UrlToGroup = FilesGroupsHelpers.GetDisplayGroupPath(file.SearchParams.Gid);
+        search.UrlToGroup = FilesGroupsHelpers.UrlRemoveParam(search.UrlToGroup, FilesGroupsHelpers.DisplaySearchTextUrlParam);
+    }
+        
+    @Display.DisplayTemplate(TemplateName: "Parts/FileView", Model: new FileViewViewModel() { File = file.File, FilePath = file.Path, type = type, FileType = file.FileType, SearchParams = search })
+}
+
+</div>
+}
+</div>
+
+}   

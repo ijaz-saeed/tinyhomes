@@ -1,0 +1,86 @@
+﻿@model FileManager.ViewModels.FileEditViewModel
+@using FileManager.Models;
+@using FileManager.Helpers;
+@using FileManager.ViewModels;
+
+@{
+    Layout.Title = T("Edit File - {0}", Model.File.Name.ToString()).ToString();
+    Style.Include("editSite.css").AtHead();
+}
+
+<div class="breadCrumbs">
+<p>
+    @Html.ActionLink(T("Media Folders").ToString(), "Index") &#62; 
+    @foreach (var item in Model.BreadRecord)
+    { 
+        @Html.ActionLink(item.Name, "Index", new { gid = item.Id }) <text>&#62;</text>
+    }
+    @T("File Properties") </p>
+</div> 
+
+<div class="sections clearBoth">
+    <div class="primary">
+        <div>
+        <label>@T("Size: <span>{0}</span>", Model.File.Size.ToFriendlySizeString())</label>
+               
+        <label>@T("Added on: <span>{0}</span>", Model.File.CreateDate)</label>
+        </div>
+
+        @using (Html.BeginFormAntiForgeryPost())
+        {
+            @Html.ValidationSummary()
+            <table><tr><td>
+            <fieldset class="fieldset-thin">
+                @Html.LabelFor(m => m.File.Name, T("File name"))
+                @Html.ValidationMessageFor(m => m.File.Name, "*")
+                @Html.TextBoxFor(m => m.File.Name, new { @class = "textMedium" })
+            </fieldset>
+             <fieldset class="fieldset-thin">
+                @Html.CheckBoxFor(m => m.File.Active, new { @class = "check-box" })
+                <label for="File.Active" class="forcheckbox">@T("Public file")</label>
+                @Html.ValidationMessageFor(m => m.File.Active, "*")
+            </fieldset>
+            <fieldset class="fieldset-thin">
+                @Html.LabelFor(m => m.Creator, T("File creator"))
+                @Html.Label(Model.Creator != null && !string.IsNullOrEmpty(Model.Creator.UserName) ? Model.Creator.UserName : "")
+            </fieldset>
+            </td>
+            <td>
+            <fieldset class="fieldset-roles">
+            <label>@T("Access for:")</label>
+            <table>
+             @{var roleIndex = 0;}
+                @foreach (var item in Model.SystemRoles)
+                {
+                    <tr>
+                    <td>
+                    <input type="hidden" value="@Model.SystemRoles[roleIndex].Role.Id" name="@Html.NameOf(m => m.SystemRoles[roleIndex].Role.Id)"/>
+                    @Html.CheckBox(Html.NameOf(m => m.SystemRoles[roleIndex].IsChecked), Model.SystemRoles[roleIndex].IsChecked)
+                    <label for="@Html.NameOf(m => m.SystemRoles[roleIndex].IsChecked)" class="forcheckbox">@Model.SystemRoles[roleIndex].Role.Name</label>
+                    </td>
+                    </tr>
+                    roleIndex++;
+                }
+                </table>
+            </fieldset>
+            </td>
+            </tr>
+            </table>
+            <fieldset>
+                @Html.LabelFor(m => m.File.Description, T("File description"))
+                @Html.ValidationMessageFor(m => m.File.Description, "*")
+                @Html.TextAreaFor(m => m.File.Description, new { @class = "textMedium" })
+            </fieldset>
+            <fieldset>
+                <button class="primaryAction" type="submit" name="submit.Save" value="@T("Save")" >@T("Save")</button>
+                <button class="primaryAction" type="submit" name="submit.Delete" value="@T("Delete")" >@T("Delete")</button>
+            </fieldset>
+            
+        }
+    </div>
+    <div>
+    <fieldset><div class='filePreview'>
+       @Display.DisplayTemplate(TemplateName: "Parts/FileView", Model: new FileViewViewModel() { File = Model.File, FilePath = Model.FilePath, type = DisplayType.edit, FileType = Model.FileType })
+    </div></fieldset>
+    </div>
+</div>

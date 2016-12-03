@@ -1,0 +1,6 @@
+﻿.navicon-files {
+background-image:url(images/menu.files.png) !important;
+}
+.navicon-files:hover {
+background-position:0 -30px !important;
+}

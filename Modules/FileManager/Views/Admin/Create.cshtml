@@ -1,0 +1,64 @@
+﻿@model FileManager.ViewModels.FileGroupCreateViewModel
+@using FileManager.Models;
+@{
+    Layout.Title = T("Add a Folder").ToString();
+    Style.Include("editSite.css").AtHead();
+}
+
+<div class="breadCrumbs">
+<p> @Html.ActionLink(T("Media Folders").ToString(), "Index") &#62; 
+    @foreach (var item in Model.BreadRecord)
+    { 
+        @Html.ActionLink(item.Name, "Index", new { gid = item.Id }) <text>&#62;</text>
+    }
+    @T("Add a Folder") </p>
+</div> 
+
+@using (Html.BeginFormAntiForgeryPost())
+{ 
+    @Html.ValidationSummary()
+    <table><tr><td>
+    <fieldset class="fieldset-thin">
+        @Html.LabelFor(m => m.Name, T("Folder name"))
+        @Html.ValidationMessageFor(m => m.Name, "*")
+        @Html.TextBoxFor(m => m.Name, new { @class = "textMedium" })
+    </fieldset>
+    <fieldset class="fieldset-thin">
+        @Html.CheckBoxFor(m => m.Active, new { @class = "check-box" })
+        <label for="Active" class="forcheckbox">@T("Public folder")</label>
+        @Html.ValidationMessageFor(m => m.Active, "*")
+        
+    </fieldset>
+    </td>
+    <td>
+    <fieldset class="fieldset-roles">
+    <label>@T("Access for:")</label>
+    <table>
+        @{var roleIndex = 0;}
+        @foreach (var item in Model.SystemRoles)
+        {
+            <tr>
+            <td>
+            <input type="hidden" value="@Model.SystemRoles[roleIndex].Role.Id" name="@Html.NameOf(m => m.SystemRoles[roleIndex].Role.Id)"/>
+            @Html.CheckBox(Html.NameOf(m => m.SystemRoles[roleIndex].IsChecked), Model.SystemRoles[roleIndex].IsChecked)
+            <label for="@Html.NameOf(m => m.SystemRoles[roleIndex].IsChecked)" class="forcheckbox">@Model.SystemRoles[roleIndex].Role.Name</label>
+            </td>
+            </tr>
+            roleIndex++;
+        }
+        </table>
+    </fieldset>
+    </td>
+    </tr>
+    </table>
+    <fieldset>
+        @Html.LabelFor(m => m.Description, T("Folder description"))
+        @Html.ValidationMessageFor(m => m.Description, "*")
+        @Html.TextAreaFor(m => m.Description)
+        
+    </fieldset>
+    
+    <fieldset>
+        <button class="primaryAction" type="submit" name="submit.Create" value="yes" >@T("Save")</button>
+    </fieldset>
+}

@@ -1,0 +1,68 @@
+﻿@model FileManager.ViewModels.FileGroupEditViewModel
+@using FileManager.Models;
+@{
+    Layout.Title = T("Folder Properties").ToString();
+    Style.Include("editSite.css").AtHead();
+}
+
+<div class="breadCrumbs">
+<p> @Html.ActionLink(T("Media Folders").ToString(), "Index") &#62; 
+    @foreach (var item in Model.BreadRecord)
+    { 
+        @Html.ActionLink(item.Name, "Index", new { gid = item.Id }) <text>&#62;</text>
+    }
+    @T("Folder Properties") </p>
+</div> 
+
+@using (Html.BeginFormAntiForgeryPost())
+{ 
+    @Html.ValidationSummary()
+    <table><tr><td>
+    <fieldset class="fieldset-thin">
+        @Html.LabelFor(m => m.Group.Name, T("Folder name"))
+        @Html.ValidationMessageFor(m => m.Group.Name, "*")
+        @Html.TextBoxFor(m => m.Group.Name, new { @class = "textMedium" })
+    </fieldset class="fieldset-thin">
+    <fieldset>
+        @Html.CheckBoxFor(m => m.Group.Active, new { @class = "check-box" })
+        <label for="Group.Active" class="forcheckbox">@T("Public folder")</label>
+        @Html.ValidationMessageFor(m => m.Group.Active, "*")
+    </fieldset>
+    <fieldset class="fieldset-thin">
+        @Html.LabelFor(m => m.Creator, T("Folder creator"))
+        @Html.Label(Model.Creator != null && !string.IsNullOrEmpty(Model.Creator.UserName) ? Model.Creator.UserName : "")
+    </fieldset>
+    </td>
+    <td>
+    <fieldset class="fieldset-roles">
+    <label>@T("Access for:")</label>
+    <table>
+        @{var roleIndex = 0;}
+        @foreach (var item in Model.SystemRoles)
+        {
+            <tr>
+            <td>
+            <input type="hidden" value="@Model.SystemRoles[roleIndex].Role.Id" name="@Html.NameOf(m => m.SystemRoles[roleIndex].Role.Id)"/>
+            @Html.CheckBox(Html.NameOf(m => m.SystemRoles[roleIndex].IsChecked), Model.SystemRoles[roleIndex].IsChecked)
+            <label for="@Html.NameOf(m => m.SystemRoles[roleIndex].IsChecked)" class="forcheckbox">@Model.SystemRoles[roleIndex].Role.Name</label>
+            </td>
+            </tr>
+            roleIndex++;
+        }
+        </table>
+    </fieldset>
+    </td>
+    </tr>
+    </table>
+    <fieldset>
+        @Html.LabelFor(m => m.Group.Description, T("Folder description"))
+        @Html.ValidationMessageFor(m => m.Group.Description, "*")
+        @Html.TextAreaFor(m => m.Group.Description, new { @class = "textMedium" })
+    </fieldset>
+    
+    
+    <fieldset>
+        <button class="primaryAction" type="submit" name="submit.Save" value="@T("Save")" >@T("Save")</button>
+        <button class="primaryAction" type="submit" name="submit.Delete" value="@T("Delete")" >@T("Delete")</button>
+    </fieldset>
+}

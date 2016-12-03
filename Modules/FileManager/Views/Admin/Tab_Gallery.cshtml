@@ -1,0 +1,170 @@
+﻿@model FileManager.ViewModels.MediaPickerViewModel
+@using FileManager.Models;
+@using FileManager.Helpers;
+@using Orchard.UI.Resources;
+@using System.Web;
+@{
+    var uploadAction = Url.Action("AddFromClient", "Admin", new { area = "FileManager" });
+}
+        <div id="gallery">
+
+        <div class="breadCrumbs">
+            <p>
+                @Html.ActionLink(T("Media Folders").ToString(), "MediaPicker", null, null, null, "tab=1", new { callback = Request["callback"] }, null) &#62; 
+                @foreach (var bread in Model.BreadRecord)
+                {
+                    @Html.ActionLink(bread.Name, "MediaPicker", null, null, null, "tab=1", new { gid = bread.Id, callback = Request["callback"] }, null) <text>&#62;</text>
+                }
+            </p>
+            <fieldset>
+                <input id="__requesttoken" type="hidden" value="@Html.AntiForgeryTokenValueOrchard()" />
+                <input id="parentGroupId" name="Gid" type="hidden" value="@Model.Gid" />
+                <input class="text-box" id="folderName" type="text" />
+                <input class="button disabled" type="button" id="createFolder" value="@T("Create Folder")" />
+            </fieldset>
+        </div>
+        <fieldset>
+        <div id="file-list">
+            <table class="items" summary="@T("This is a table of the files currently available for use in your application.")">
+                @foreach (var group in Model.GroupRecords)
+                {
+                    <tr>
+                        <td class="media-folder" colspan="2">
+                            <img src="@Href("~/Modules/Orchard.Media/Content/Admin/images/folder.gif")" height="16" width="16" class="mediaTypeIcon" alt="@T("Folder")" />
+                            @Html.ActionLink(group.Group.Name, "MediaPicker", null, null, null, "tab=1", new { gid = group.Group.Id, callback = Request["callback"] }, null)
+                        </td>
+                    </tr>
+                }
+                @if (Model.FileRecords != null)
+                {
+                    foreach (var file in Model.FileRecords)
+                    {
+                        var src = file.FileType != FileManagerSettingsTypes.pictures ? Url.Content(FilesGroupsHelpers.GetExtensionImagePath(file.File)) : file.PublicPath;
+                    <tr data-imgsrc="@file.PublicPath" data-filetype="@file.FileType" data-src="@src" data-fid="@file.File.Id"  class="media-item"
+                        data-filename="@file.File.Name">
+                        <td class="media-thumbnail">
+                            <img data-filename="@src.Substring(src.LastIndexOf("/") + 1)" alt="" src="@src" onload="jQuery.mediaPicker.scalePreview(this)" />
+                        </td>
+                        <td class="media-details">
+                            <ul class="media-summary">
+                                <li><a class="media-filename" href="@file.PublicPath"  target="_blank">@file.File.Name</a></li>
+                                <li>@T("Added on"): @file.File.CreateDate</li>
+                                <li>@T("Size"): @file.File.Size.ToFriendlySizeString()</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    }
+                }
+            </table>
+            </div>
+            @if (Model.BreadRecord != null && Model.BreadRecord.Count > 0)
+            {
+                using (Html.BeginFormAntiForgeryPost(uploadAction, FormMethod.Post, new { id = "lib-uploadform", enctype = "multipart/form-data", onsubmit = "jQuery.mediaPicker.uploadMedia(this)" }))
+                { 
+                <input name="Gid" type="hidden" value="@Model.Gid" />
+                <label for="fileUpload">@T("Upload a file from your computer")</label>
+                <input type="file" name="fileUpload" id="fileUpload"  />
+                <input class="button" type="submit" id="upload" value="Upload" />
+                }
+            }
+            <img id="img-indicator" src="@Url.Content("~/Modules/FileManager/Styles/images/synchronizing.gif")" alt="" class="throbber" />
+
+        </fieldset>
+
+        </div>
+        <div id="file-details">
+            <img alt="" id="lib-loader" style="display:none" src="" />
+            <div id="div-loader" style="display:none" src=""></div>
+            <fieldset>
+            <ol>
+                <li>
+                <label for="lib-src">@T("URL")</label>
+                <input class="text-box" type="text" id="lib-src" />
+                <input type="hidden" id="lib-fid" />
+                </li>
+
+                <li style="display:none;" class="alt-text image-items-ext">
+                <label for="lib-alt">@T("Alternative Text")</label>
+                <input class="text-box" type="text" id="lib-alt" />
+                </li>
+
+                <li style="display:none;" class="class-text image-items-ext documents-items-ext">
+                <label for="lib-class">@T("Class")</label>
+                <input class="text-box" type="text" id="lib-class" />
+                </li>
+
+                <li style="display:none;" class="style-text image-items-ext documents-items-ext">
+                <label for="lib-style">@T("Style")</label>
+                <input class="text-box" type="text" id="lib-style" />
+                </li>
+
+                <li style="display:none;" class="image-items-ext">
+                <label for="lib-align">@T("Alignment")</label>
+                <select id="lib-align" >
+                    <option value="">None</option>
+                    <option value="left">Left</option>
+                    <option value="right">Right</option>
+                    <option value="top">Top</option>
+                    <option value="texttop">Text Top</option>
+                    <option value="middle">Middle</option>
+                    <option value="absmiddle">AbsMiddle</option>
+                    <option value="bottom">Bottom</option>
+                    <option value="absbottom">AbsBottom</option>
+                    <option value="baseline">Baseline</option>
+                </select>
+                </li>
+
+                <li style="display:none;" class="img-type-none-display-style" >
+                <label for="lib-display-type-none">@T("Display Style")</label>
+                <select id="lib-display-type-none" disabled="disabled" >
+                    <option value="inline">Inline</option>
+                </select>
+                </li>
+
+                <li style="display:none;" class="image-items video-items documents-items" >
+                <label for="lib-display">@T("Display Style")</label>
+                <select id="lib-display" >
+                    <option value="inline">Inline</option>
+                    <option value="element">Element</option>
+                </select>
+                </li>
+
+
+                <li class="group" id="lib-resize" style="display:none;">
+                <div class="image-width">
+                    <label for="lib-width">@T("Width")</label>
+                    <input class="text-box" type="text" id="lib-width" />&nbsp;x
+                </div>
+                <div class="image-height">
+                    <label for="lib-height">@T("Height")</label>
+                    <input class="text-box" type="text" id="lib-height" />
+                </div>
+                </li>
+
+                <li style="display:none;" class="image-items-ext video-items-ext documents-items-ext">
+                <input type="checkbox" id="lib-lock" checked="checked" />
+                <label class="forcheckbox" for="lib-lock">@T("Lock Aspect Ratio")</label>
+                </li>
+
+                <li class="actions">
+                
+                <input type="button" id="lib-insert" class="button disabled" value="@T("Insert")" data-edittext="@T("Update")" />
+                <input type="button" id="lib-cancel" class="button" value="@T("Cancel")" />
+                </li>
+                </ol>
+            </fieldset>
+        </div>
+
+        <script type="text/javascript">
+            $("#lib-display").change(function () {
+                if ($(this).val() == "element") {
+                    $("#lib-resize").show();
+                    $("." + mediaClass).show();
+                }
+                else {
+                    $("#lib-resize").hide();
+                    $("." + mediaClass).hide();
+                }
+            });
+                
+        </script>

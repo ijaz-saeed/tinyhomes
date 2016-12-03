@@ -1,0 +1,384 @@
+﻿@model FileManager.ViewModels.FileGroupIndexViewModel
+@using FileManager.ViewModels;
+@using FileManager.Helpers;
+@using Orchard.Utility.Extensions;
+@using System.Web.Helpers;
+
+@{ 
+    Style.Require("MediaAdmin");
+    Style.Include("FileDisplay.css");
+    
+   Layout.Title = T("File Manager").ToString();
+   Script.Require("jQuery").AtHead();
+
+   Script.Require("jQueryUI").AtHead();
+   Style.Require("jQueryUI_Orchard").AtHead();   
+    }
+
+    @if (Model == null)
+    {
+
+    }
+    else
+    { 
+    
+    <div class="breadCrumbs">
+
+
+<p>
+    @Html.ActionLink(T("Media Folders").ToString(), "Index") &#62; 
+    @if (Model.BreadRecord != null)
+    {
+        foreach (var bread in Model.BreadRecord)
+        {
+            @Html.ActionLink(bread.Name, "Index", new { gid = bread.Id }) <text>&#62;</text>
+        }
+    }
+    @T("Manage Folder")</p>
+</div>
+
+
+    if (Model.BreadRecord != null && Model.BreadRecord.Count > 0)
+    { 
+<div class="folderProperties">
+<p>@Html.ActionLink(T("Folder Properties").ToString(), "EditGroup", new { gid = Model.Gid })</p>
+</div> 
+    }
+
+<div class="clearBoth"></div>
+
+    using (Html.BeginFormAntiForgeryPost(this.ViewContext.HttpContext.Request.Url.PathAndQuery, FormMethod.Post, new { @name = "fileManagerForm" }))
+    { 
+    @Html.ValidationSummary()
+    <fieldset class="bulk-actions">
+        <label for="publishActions">@T("Actions:")</label>
+        <select id="publishActions" name="@Html.NameOf(m => m.BulkAction)">
+            @Html.SelectOption(Model.BulkAction, FileGroupsAdminIndexBulkAction.None, T("Choose action...").ToString())
+            @Html.SelectOption(Model.BulkAction, FileGroupsAdminIndexBulkAction.Delete, T("Delete").ToString())
+            @Html.SelectOption(Model.BulkAction, FileGroupsAdminIndexBulkAction.Copy, T("Copy").ToString())
+            @Html.SelectOption(Model.BulkAction, FileGroupsAdminIndexBulkAction.Publish, T("Publish").ToString())
+            @Html.SelectOption(Model.BulkAction, FileGroupsAdminIndexBulkAction.Unpublish, T("Unpublish").ToString())
+        </select>
+        <button type="submit"name="submit.BulkEdit" value="@T("Apply")">@T("Apply")</button>
+    </fieldset>
+    <fieldset class="bulk-actions">
+        
+        
+        <div class="orchard-files-filter-searchbar">
+        @Html.TextBoxFor(m => m.Options.SearchText, new { @class = "text", @id = "serarchText", @style = "display:inline-block;width:160px;border:1px solid transparent;", @title = T("Search file by name") })
+        @*<input id="serarchText" style="display:inline-block;" type="text" title="@T("Search file by name")" onchange="SetVisibleClearSearch()" />*@
+        <div style="display:inline-block; width:17px;margin-right:4px;">
+        <img id="clearSearch" style="display:none;" alt="clear search" class="orchard-files-filter-img-button orchard-files-filter-clear-search" src="@Url.Content("~/Modules/FileManager/Styles/Images/cross.png")" onclick="ClearSearch();" />
+        </div>
+        </div>
+        <img alt="search" style="margin-right:13px;" class="orchard-files-filter-img-button" src="@Url.Content("~/Modules/FileManager/Styles/Images/magnifier.gif")" onclick="document.fileManagerForm.submitFilter.click();" />
+                
+        <label for="filterResults">@T("Sort by:")</label>
+        <select id="filterResults" name="@Html.NameOf(m => m.Options.OrderBy)">
+            @Html.SelectOption(Model.Options.OrderBy, FileGroupsAdminIndexOrderBy.Name, T("Name").ToString())
+            @Html.SelectOption(Model.Options.OrderBy, FileGroupsAdminIndexOrderBy.CreateDate, T("Create Date").ToString())
+            @Html.SelectOption(Model.Options.OrderBy, FileGroupsAdminIndexOrderBy.UpdateDate, T("Update Date").ToString())
+            @Html.SelectOption(Model.Options.OrderBy, FileGroupsAdminIndexOrderBy.Size, T("Size").ToString())
+        </select>
+
+        <button type="submit" name="submitFilter" style="display:none;" value="@T("Filter")">@T("Filter")</button>
+        
+        <a id="orderByAsc" style="cursor:pointer;" onclick='$("#orderDesc").val("false"); document.fileManagerForm.submitFilter.click();' title="@T("Sort asc")"><img alt="sort asc" style="vertical-align:middle" class="orchard-files-filter-sort-button" src="@Url.Content("~/Modules/FileManager/Styles/Images/sort-asc.png")" /></a>
+        <a id="orderByDesc" style="cursor:pointer;" onclick='$("#orderDesc").val("true"); document.fileManagerForm.submitFilter.click();' title="@T("Sort desc")"><img alt="sort asc" class="orchard-files-filter-sort-button" src="@Url.Content("~/Modules/FileManager/Styles/Images/sort-desc.png")" /></a>     
+        
+        @*<button type="submit" name="submit.Filter" onclick='$("#orderDesc").val("false");' value="@T("Asc")">@T("Asc")</button>
+        <button type="submit" name="submit.Filter" onclick='$("#orderDesc").val("true");' value="@T("Desc")">@T("Desc")</button>*@
+        
+        <a style="cursor:pointer;margin-left:10px;" onclick='$("#pasteDialog").dialog("open");return false;' title="@T("Cut selected entries")"><img alt="Cut selected entries" style="vertical-align:text-bottom;" src="@Url.Content("~/Modules/FileManager/Styles/Images/cut.png")" /></a>     
+        <button type="submit" name="submitCut" id="submitCut" style="display:none;"  value="@T("Cut")">@T("Cut")</button>
+        @Html.HiddenFor(m => m.Options.OrderDesc, new { @id = "orderDesc", @value = "false" })        
+    </fieldset>
+
+    <div class="manage">
+        @if (Model.BreadRecord != null && Model.BreadRecord.Count > 0)
+        { 
+            @Html.ActionLink(T("Add media").ToString(), "Add", 
+                    new { gid = Model.Gid }, new { @class = "button primaryAction" })
+        }
+        @Html.ActionLink(T("Add a folder").ToString(), "Create", 
+                new { gid = Model.Gid }, new { @class = "button" })
+    </div>
+    
+
+    <fieldset>
+        <table class="items" id="fileManagerINdexTable"  summary="@T("This is a table of the media folders currently available for use in your application.")">
+            <colgroup>
+                <col id="Col1" />
+                <col id="Col2" />
+                <col id="Col3" />
+                <col id="Col4" />
+                <col id="Col5" />
+                <col id="Col6" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th scope="col">@Html.CheckBox("selectAllCheck", Model.SelectAll, new { @onclick = "GetSelectedAll(this);", @id = "selectAllCheck" })</th>
+                    <th scope="col">@T("Name")</th>
+                    <th scope="col">@T("Size")</th>
+                    <th scope="col">@T("Last Updated")</th>
+                    <th scope="col">@T("Create")</th>
+                    <th scope="col">@T("Actions")</th>
+                </tr>
+                <tr>
+                <td colspan="6" id="selectAllRow" style="display:none;">
+                    <a id="selectAllText" onclick="SelectAllItems(true); return false;" style="cursor:pointer; margin-left:15px;" >@T("SelectAll ({0}).", Model.TotalItemsCount)</a>
+                    <a id="deselectAllText" onclick="SelectAllItems(false); return false;" style="display:none;cursor:pointer; margin-left:15px;">@T("Clear selection.")</a>
+                </td>
+                </tr>
+            </thead>
+            @{var groupIndex = 0;}
+            @foreach (var group in Model.GroupRecords)
+            {
+                if (group != null && group.Group != null && !string.IsNullOrEmpty(group.Group.Name))
+                {
+            <tr>
+                <td>
+                    <input type="hidden" value="@Model.GroupRecords[groupIndex].Group.Id" name="@Html.NameOf(m => m.GroupRecords[groupIndex].Group.Id)"/>
+                    @Html.CheckBox(Html.NameOf(m => m.GroupRecords[groupIndex].IsChecked), Model.GroupRecords[groupIndex].IsChecked, new { @onclick = "CancelSelectAll();" })
+                <td>
+                    <img src="@Href("~/Modules/Orchard.Media/Content/Admin/images/folder.gif")" height="16" width="16" class="mediaTypeIcon" alt="@T("Folder")" />
+                    @Html.ActionLink(group.Group.Name, "Index", new { gid = group.Group.Id })
+                    @if (group.SearchParams != null && !string.IsNullOrEmpty(group.SearchParams.GroupName))
+                    {
+                        <div>
+                        @T("Path: ")@Html.ActionLink(group.SearchParams.GroupName, "Index", new { gid = group.parentGid })
+                        </div> 
+                    }
+                </td>
+                <td>@group.Size.ToFriendlySizeString()</td>
+                <td>@group.Group.UpdateDate</td>
+                <td>@group.Group.CreateDate</td>
+                
+                <td>
+                    @Html.ActionLink(T("Edit").ToString(), "EditGroup", new { gid = group.Group.Id }) |
+                    @Html.ActionLink(T("Delete").ToString(), "DeleteGroup", new { gid = group.Group.Id, rid = Model.Gid }) |
+                    @if (group.Group.Active)
+                    {
+                        @Html.ActionLink(T("Unpublic").ToString(), "UnpublicGroup", new { gid = group.Group.Id, rid = Model.Gid })
+                    }
+                    else
+                    {
+                        @Html.ActionLink(T("Public").ToString(), "PublicGroup", new { gid = group.Group.Id, rid = Model.Gid })
+                    }
+                </td>
+            </tr>
+                }
+                groupIndex = groupIndex + 1;
+            }
+
+            @{int fileIndex = 0;}
+            @foreach (var file in Model.FileRecords)
+            {
+                if (file != null && file.File != null && !string.IsNullOrEmpty(file.File.Name))
+                { 
+            <tr>
+                <td>
+                    <input type="hidden" value="@Model.FileRecords[fileIndex].File.Id" name="@Html.NameOf(m => m.FileRecords[fileIndex].File.Id)"/>
+                    @Html.CheckBox(Html.NameOf(m => m.FileRecords[fileIndex].IsChecked), Model.FileRecords[fileIndex].IsChecked, new { @onclick = "CancelSelectAll();" })
+                    @Html.Hidden(Html.NameOf(m => m.FileRecords[fileIndex].parentGid), Model.FileRecords[fileIndex].parentGid)
+                </td>
+                <td>
+                    @Html.ActionLink(file.File.Name, "EditFile", new { fid = file.File.Id, gid = file.parentGid })
+                    @if (file.SearchParams != null && !string.IsNullOrEmpty(file.SearchParams.GroupName))
+                    {
+                        <div>
+                        @T("Path: ")@Html.ActionLink(file.SearchParams.GroupName, "Index", new { gid = file.parentGid })
+                        </div> 
+                    }
+                </td>
+                <td>@file.File.Size.ToFriendlySizeString()</td>
+                <td>@file.File.UpdateDate</td>
+                <td>@file.File.CreateDate</td>
+                
+                <td>
+                    @Html.ActionLink(T("Edit").ToString(), "EditFile", new { fid = file.File.Id, gid = file.parentGid }) |
+                    @Html.ActionLink(T("Delete").ToString(), "DeleteFile", new { fid = file.File.Id, gid = file.parentGid }) |
+                    @if (file.File.Active)
+                    {
+                        @Html.ActionLink(T("Unpublic").ToString(), "UnpublicFile", new { fid = file.File.Id, rid = file.parentGid })
+                    }
+                    else
+                    {
+                        @Html.ActionLink(T("Public").ToString(), "PublicFile", new { fid = file.File.Id, rid = file.parentGid })
+                    }
+                </td>
+            </tr>
+                    fileIndex = fileIndex + 1;
+                }
+            }
+        </table>
+        <input type="hidden" name="Gid" value="@Model.Gid" />
+        <input type="hidden" name="requestedPage" id="requestedPage" /> 
+        <input type="hidden" name="requestedPageSize" id="requestedPageSize" /> 
+        <input type="hidden" name="requestedPageNo" id="requestedPageNo" /> 
+        <input type="hidden" name="SelectAllChanged" id="SelectAllChanged" value="false" />  
+        <input type="hidden" name="SelectAll" id="SelectAll" value="@Model.SelectAll" />  
+        <input type="hidden" name="DeselectAll" id="DeselectAll" value="false" /> 
+
+        <button type="submit" id="submitPage" name="submitPage" value="@T("Page")" style="display:none;" >@T("Page")</button>  
+        @Display(Model.Pager)
+    </fieldset>
+    
+    <script type="text/javascript">
+
+        function ClearSearch() {
+            $("#serarchText").val("");
+            document.fileManagerForm.submitFilter.click();
+        }
+
+        function CancelSelectAll() {
+            var d = document.getElementById("selectAllCheck");
+            d.checked = false;
+            $("#SelectAllChanged").val("true");
+        }
+
+
+        function SelectAllItems(flag) {
+
+            $("#SelectAllChanged").val("false");
+            $("#deselectAllText").hide();
+            $("#selectAllText").hide();
+
+            if (flag == true) {
+                $("#deselectAllText").show();
+
+                $("#SelectAll").val("true");
+                $("#DeselectAll").val("false");
+            }
+            else {
+
+                var d = document.getElementById("fileManagerINdexTable");
+                var checks = d.getElementsByTagName("input");
+
+                for (var i = 0; i < checks.length; i++) {
+                    if (checks[i].type == "checkbox") {
+                        checks[i].checked = flag;
+                    }
+                }
+
+                $("#selectAllRow").hide();
+
+                $("#SelectAll").val("false");
+                $("#DeselectAll").val("true");
+            }
+
+        }
+
+
+        function GetSelectedAll(obj) {
+            if (obj != null) {
+                $("#SelectAllChanged").val("true");
+                var d = document.getElementById("fileManagerINdexTable");
+                var checks = d.getElementsByTagName("input");
+
+                for (var i = 0; i < checks.length; i++) {
+                    if (checks[i].type == "checkbox") {
+                        checks[i].checked = obj.checked;
+                    }
+                }
+
+                $("#selectAllRow").show();
+                if (obj.checked == true) {
+                    $("#selectAllText").show();
+                    $("#deselectAllText").hide();
+                }
+                else {
+                    $("#selectAllText").hide();
+                    $("#deselectAllText").show();
+                }
+            }
+        }
+
+        
+    </script>
+
+    <script type="text/javascript">
+
+
+        function SetVisibleClearSearch() {
+            if ($("#serarchText").val() != "") {
+                $("#clearSearch").show();
+            }
+            else {
+                $("#clearSearch").hide();
+            }
+        }
+
+        $(document).ready(function () {
+
+            $(".pager-footer li a").click(function () {
+                var reqPage = this.href;
+                $("#requestedPage").val(reqPage);
+                $("#requestedPageSize").val($("#pageSize").val());
+
+                document.fileManagerForm.submitPage.click();
+                return false;
+            });
+
+            $(".pager-footer select").change(function () {
+                var reqPage = this.val();
+                $("#requestedPage").val(reqPage);
+                $("#requestedPageSize").val($("#pageSize").val());
+
+                document.fileManagerForm.submitPage.click();
+                return false;
+            });
+
+            SetVisibleClearSearch();
+
+            $("#serarchText").keyup(function (event) {
+                SetVisibleClearSearch();
+            });
+
+
+            $("#pasteDialog").dialog({ autoOpen: false, title: "Paste selected entries to directory" });
+
+            $("#filterResults").change(function () {
+                var self = $(this);
+                var form = self.closest("form");
+                form.submit();
+
+                self.attr("disabled", true);
+            });
+
+            $("#submitPaste").click(function () {
+                pasteGroup = $("#SelectedPasteGroup").val();
+                $("#selectedPasteGroupHidden").val(pasteGroup);
+
+                copySelect = document.getElementById("CopySelected").checked;
+                $("#copySelectedHidden").val(copySelect);
+
+                submitCut.setAttribute("onclick", "");
+                document.fileManagerForm.submitCut.click();
+            });
+
+        });
+    </script>
+    
+    
+    @Html.HiddenFor(model => model.SelectedPasteGroup, new { @id = "selectedPasteGroupHidden" })
+    @Html.HiddenFor(model => model.CopySelected, new { @id = "copySelectedHidden" })
+    
+        <div id="pasteDialog">
+        <fieldset>
+  <legend>Paste file to directory</legend>
+  <div class="editor-label">
+    @Html.LabelFor(model => model.PasteGroupList, T("Select directory"))
+    @Html.DropDownListFor(model => model.SelectedPasteGroup, Model.PasteGroupList, new { @id = "SelectedPasteGroup" })
+  </div>
+  <div class="editor-field" style="margin-top:7px; margin-bottom:7px;">
+    @Html.CheckBoxFor(model => model.CopySelected, new { @class = "check-box", @id = "CopySelected" })
+    <label for="CopySelected" class="forcheckbox">@T("Copy selected items")</label>
+  </div>
+  <button type="submit" id="submitPaste" name="submit.Paste" value="@T("Paste")">@T("Paste")</button>  
+  <button type="submit" onclick="$('#pasteDialog').dialog('close');return false;" >@T("Cancel")</button>
+</fieldset>
+    </div>
+}
+
+    }

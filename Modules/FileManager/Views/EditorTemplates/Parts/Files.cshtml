@@ -1,0 +1,24 @@
+﻿@model FileManager.ViewModels.EditModuleViewModel
+@using FileManager.Helpers;
+
+
+<fieldset>
+  <legend>File Fields</legend>
+  
+  <div class="editor-label">
+    @Html.LabelFor(model => model.GroupList)
+    @Html.DropDownListFor(model => model.selectedGroup, Model.GroupList)
+  </div>
+  <div class="editor-field">
+    @Html.LabelFor(model => model.ShowTypes)
+    @Html.DropDownListFor(model => model.selectedShowType, Model.ShowTypes)
+  </div>
+  <div class="editor-field">
+    @Html.CheckBoxFor(model => model.HideGroups, new {@class = "check-box" })
+    <label for="HideGroups" class="forcheckbox">@T("Hide groups")</label>
+  </div>
+  <div class="editor-field">
+    @Html.CheckBoxFor(model => model.HideFilterPanel, new { @class = "check-box" })
+    <label for="HideFilterPanel" class="forcheckbox">@T("Hide filter panel")</label>
+  </div>          
+</fieldset>

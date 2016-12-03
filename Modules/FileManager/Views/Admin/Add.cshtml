@@ -1,0 +1,182 @@
+﻿@model FileManager.ViewModels.FileItemAddViewModel
+@using FileManager.Helpers;
+@using FileManager.Models;
+@{
+    Style.Require("MediaAdmin");
+
+    Layout.Title = T("Add Media").ToString();
+    Style.Include("bootstrap.min.css");
+    Script.Require("jQuery").AtHead();
+    Script.Require("jQueryUI").AtHead();
+
+    Script.Include("vendor/jquery.ui.widget.js");
+    Script.Include("tmpl.min.js");
+    Script.Include("load-image.min.js");
+    Script.Include("canvas-to-blob.min.js");
+    Script.Include("jquery.iframe-transport.js");
+    Script.Include("jquery.fileupload.js");
+    Script.Include("jquery.fileupload-ip.js");
+    Script.Include("jquery.fileupload-ui.js");
+    Script.Include("locale.js");
+      ///string.Format("acceptFileTypes: /(\.|\/)({0})$/i,", Model.UploadAllowedFileTypeWhitelist) 
+}
+
+@using(Script.Foot()) {
+<script type="text/javascript">
+//<![CDATA[
+    $(function () {
+        'use strict';
+
+        // Initialize the jQuery File Upload widget:
+        $('#fileupload').fileupload();
+
+        $('#fileupload').fileupload('option', {
+            maxFileSize: @Model.MaxRequestLength,
+            @if (!string.IsNullOrEmpty(Model.UploadAllowedFileTypeWhitelist)) {
+                @string.Format("acceptFileTypes: /({1}.|{1}/)({0})$/i,\n", Model.UploadAllowedFileTypeWhitelist, "\\");
+            }
+            resizeMaxWidth: 1920,
+            resizeMaxHeight: 1200
+        });
+    });
+//]]>
+</script>
+}
+
+
+<div class="breadCrumbs">
+<p> @Html.ActionLink(T("Media Folders").ToString(), "Index") &#62; 
+    @foreach (var item in Model.BreadRecord) { 
+        @Html.ActionLink(item.Name, "Index", new {gid = item.Id}) <text>&#62;</text>
+    }
+    @T("Add File")</p>
+</div>
+
+
+<fieldset>
+    @using (Html.BeginForm("FileUpload", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @id = "fileupload" }))
+    {
+        @Html.ValidationSummary()
+        @Html.HiddenFor(m => m.Gid)
+        @Html.AntiForgeryTokenOrchard()
+
+        <div class="row fileupload-buttonbar">
+            <div class="span7">
+                <!-- The fileinput-button span is used to style the file input field as button -->
+                <span class="btn btn-success fileinput-button">
+                    <i class="icon-plus icon-white"></i>
+                    <span>Add files...</span>
+                    <input type="file" name="files[]" multiple>
+                </span>
+                <button type="submit" class="btn btn-primary start">
+                    <i class="icon-upload icon-white"></i>
+                    <span>Start upload</span>
+                </button>
+                
+                <button type="reset" class="btn btn-warning cancel">
+                    <i class="icon-ban-circle icon-white"></i>
+                    <span>Cancel upload</span>
+                </button>
+                @*<button type="button" class="btn btn-danger delete">
+                    <i class="icon-trash icon-white"></i>
+                    <span>Delete</span>
+                </button>
+                <input type="checkbox" class="toggle">*@
+                @Html.CheckBoxFor(m => m.ExtractZip, new { @class = "check-box", @style = "margin-left:15px;" })
+                <label for="ExtractZip" class="forcheckbox">@T("Extract Zip")</label>
+            </div>
+            <div class="span5">
+                <!-- The global progress bar -->
+                <div class="progress progress-success progress-striped active fade">
+                    <div class="bar" style="width:0%;"></div>
+                </div>
+            </div>
+        </div>
+        <!-- The loading indicator is shown during image processing -->
+        <div class="fileupload-loading"></div>
+        <br/>
+        <!-- The table listing the files available for upload/download -->
+        <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+    } 
+</fieldset>        
+        
+<!-- The template to display files available for upload -->
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade">
+        <td class="preview">
+        <span class="fade"></span></td>
+        <td class="name"><span>{%=file.name%}</span></td>
+        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+        {% if (file.error) { %}
+            <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
+        {% } else if (o.files.valid && !i) { %}
+            <td>
+                <div class="progress progress-success progress-striped active" style="margin-bottom:0px;"><div class="bar" style="width:0%;"></div></div>
+            </td>
+            <td class="start">{% if (!o.options.autoUpload) { %}
+                <button class="btn btn-primary">
+                    <i class="icon-upload icon-white"></i>
+                    <span>{%=locale.fileupload.start%}</span>
+                </button>
+            {% } %}</td>
+        {% } else { %}
+            <td colspan="2"></td>
+        {% } %}
+        <td class="cancel">{% if (!i) { %}
+            <button class="btn btn-warning">
+                <i class="icon-ban-circle icon-white"></i>
+                <span>{%=locale.fileupload.cancel%}</span>
+            </button>
+        {% } %}</td>
+    </tr>
+{% } %}
+</script>
+<!-- The template to display files available for download -->
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download fade">
+        {% if (file.error) { %}
+            <td></td>
+            <td class="name"><span>{%=file.name%}</span></td>
+            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+            <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
+        {% } else { %}
+            <td class="preview">{% if (file.thumbnail_url) { %}
+                <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
+            {% } %}</td>
+            <td class="name">
+                <a title="{%=file.name%}"><span>{%=file.name%}</span></a>
+            </td>
+            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+            <td colspan="2"></td>
+        {% } %}
+        <td class="delete">
+        </td>
+    </tr>
+{% } %}
+</script>
+
+
+
+
+
+
+@*@using (Html.BeginForm("Add", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" })) { 
+    @Html.ValidationSummary()
+    <fieldset>
+        <label for="pageTitle">@T("File Path <span> - multiple files must be in a zipped folder</span>")</label>
+        <input id="MediaItemPath" name="MediaItemPath" type="file" value="@T("Browse")" size="64"/>
+
+        @Html.LabelFor(m => m.ExtractZip, T("Extract Zip"))
+        @Html.CheckBoxFor(m => m.ExtractZip)
+
+        <span class="hint">@T("After your files have been uploaded, you can edit the titles and descriptions.")</span>
+        <input type="hidden" id="Gid" name="Gid" value="@Model.Gid" />
+    </fieldset>
+    <fieldset>
+        <button class="primaryAction" type="submit">@T("Upload")</button>
+        @Html.AntiForgeryTokenOrchard()
+    </fieldset>
+}
+*@

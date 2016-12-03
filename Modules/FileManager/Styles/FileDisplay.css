@@ -1,0 +1,26 @@
+﻿.orchard-files-root{padding:8px 3px 8px 50px; color:#5C5C5C;font-weight:bolder; font-size:14pt;  
+                    background-image:url('Images/folder-open-32.png'); background-repeat:no-repeat; background-position:10px;}
+                    
+.orchard-files-groups-fieldset 
+{
+    border:1px solid #B4F3AC;
+    margin-bottom:6px;  
+    padding:3px; 
+    width:660px;
+}
+.orchard-files-groups-fieldset legend{margin-left:8px; font-size:10pt; padding:0 3px 0 3px;}
+
+.orchard-files-groups-fieldset a:hover {color:#47BE29; box-shadow:inset 0 0 30px #E6E6E6;
+                                    border-radius: 3px 3px 3px 3px; -moz-border-radius: 3px 3px 3px 3px; -webkit-border-radius: 3px 3px 3px 3px; -khtml-border-radius: 3px 3px 3px 3px;}
+
+.orchard-files-groups-fieldset a{display:inline-block; font-size:13px; color:#5C5C5C; font-weight:bolder; padding:10px 8px 10px 50px; width:115px; margin:2px 0 2px 0;
+  background-image:url('Images/folder-32.png'); background-repeat:no-repeat; background-position:10px;}
+ 
+ .orchard-files-group-current{background-image:url('Images/folder-open-32.png') !important;}
+ 
+ .orchard-files-filterpanel{width:650px;height:30px; border-radius:3px; border:1px solid #B4F3AC; margin-bottom:5px; padding:5px 5px 5px 10px; background-image:url('Images/filter-bg.png'); background-color:#B4F3AC; background-repeat:repeat-x;}
+ .orchard-files-filter-img-button{cursor:pointer;}
+ .orchard-files-filter-clear-search{vertical-align:middle;}
+ #filterResults{margin-right:5px;}
+ .orchard-files-filter-searchbar{display:inline-block;border:1px solid silver; background-color:White;margin-right:4px;}
+ .orchard-files-filter-searchbar input{border-color:transparent; height:15px; width:110px;}
