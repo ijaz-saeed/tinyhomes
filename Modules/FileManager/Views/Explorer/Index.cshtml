@@ -12,22 +12,22 @@
     @*Making a URL to going up one level. *@
     <a title="Parent"
         href="@uri.AbsoluteUri.Remove(uri.AbsoluteUri.Length - uri.Segments.Last().Length)">
-        <img src="/Content/up.png" alt="Up" style="width: 20px; height: 20px; border: none" />
+        <img src="@Url.Content("~/Modules/FileManager/Content/up.png")" alt="Up" style="width: 20px; height: 20px; border: none" />
     </a>
 }
 <ul>
     @*Listing the directories *@
-    @foreach (FolderExplorer.Models.DirModel dir in Model.dirModelList)
+    @foreach (FileManager.Models.DirModel dir in Model.dirModelList)
     {
         <li>
-            <img src="/Content/folder.png" alt="Folder Logo" align="top" style="width: 20px;
+            <img src="@Url.Content("~/Modules/FileManager/Content/folder.png")" alt="Folder Logo" align="top" style="width: 20px;
                 height: 20px; border: none" />
             <a href="@dir.DirName/" title="@dir.DirName">@dir.DirName</a> 
             . . . . . . @dir.DirAccessed
         </li>
     }
     @*Listing the files *@
-    @foreach (FolderExplorer.Models.FileModel file in Model.fileModelList)
+    @foreach (FileManager.Models.FileModel file in Model.fileModelList)
     {
         <li><a href="@(uri.AbsolutePath + file.FileName)" 
         title="@file.FileName" target="_blank">

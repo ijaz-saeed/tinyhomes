@@ -917,6 +917,11 @@
         <VirtualPath>~/Modules/Orchard.ContentTypes/bin/Orchard.ContentTypes.dll</VirtualPath>
       </Reference>
       <Reference>
+        <Name>Orchard.Forms</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Forms/bin/Orchard.Forms.dll</VirtualPath>
+      </Reference>
+      <Reference>
         <Name>Orchard.Layouts</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
         <VirtualPath>~/Modules/Orchard.Layouts/bin/Orchard.Layouts.dll</VirtualPath>
@@ -992,6 +997,11 @@
         <Name>Orchard.ContentTypes</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
         <VirtualPath>~/Modules/Orchard.ContentTypes/bin/Orchard.ContentTypes.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.Forms</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Forms/bin/Orchard.Forms.dll</VirtualPath>
       </Reference>
       <Reference>
         <Name>Orchard.Layouts</Name>
@@ -1234,6 +1244,11 @@
         <Name>Orchard.ContentTypes</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
         <VirtualPath>~/Modules/Orchard.ContentTypes/bin/Orchard.ContentTypes.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.Forms</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Forms/bin/Orchard.Forms.dll</VirtualPath>
       </Reference>
       <Reference>
         <Name>Orchard.Layouts</Name>
@@ -1842,6 +1857,11 @@
         <VirtualPath>~/Modules/Orchard.ContentTypes/bin/Orchard.ContentTypes.dll</VirtualPath>
       </Reference>
       <Reference>
+        <Name>Orchard.Forms</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Forms/bin/Orchard.Forms.dll</VirtualPath>
+      </Reference>
+      <Reference>
         <Name>Orchard.Layouts</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
         <VirtualPath>~/Modules/Orchard.Layouts/bin/Orchard.Layouts.dll</VirtualPath>
@@ -1923,6 +1943,11 @@
         <Name>Orchard.ContentTypes</Name>
         <LoaderName>PrecompiledExtensionLoader</LoaderName>
         <VirtualPath>~/Modules/Orchard.ContentTypes/bin/Orchard.ContentTypes.dll</VirtualPath>
+      </Reference>
+      <Reference>
+        <Name>Orchard.Forms</Name>
+        <LoaderName>PrecompiledExtensionLoader</LoaderName>
+        <VirtualPath>~/Modules/Orchard.Forms/bin/Orchard.Forms.dll</VirtualPath>
       </Reference>
       <Reference>
         <Name>Orchard.Layouts</Name>
