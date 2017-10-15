@@ -1,0 +1,10 @@
+﻿@{ var items = (IList<dynamic>)Enumerable.Cast<dynamic>(Model.Items); }
+
+@if (items != null && items.Any())
+{
+    <a href="@Model.Href"  class="dropdown-toggle" data-toggle="dropdown"> @Model.Text <b class="caret"></b> </a>
+}
+else
+{
+    <a href="@Model.Href" >@Model.Text</a>
+}
